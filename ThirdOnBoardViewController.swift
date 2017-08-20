@@ -16,6 +16,7 @@ class ThirdOnBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imgView.image = UIImage(named: "3_50")
 
         // Do any additional setup after loading the view.
     }

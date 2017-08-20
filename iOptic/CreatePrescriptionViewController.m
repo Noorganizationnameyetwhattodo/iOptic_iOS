@@ -470,12 +470,12 @@
             NSDictionary *powerDetails = [contactLensDetails valueForKey:@"power"];
             NSDictionary *bcDetails = [contactLensDetails valueForKey:@"bc"];
             NSDictionary *diaDetails = [contactLensDetails valueForKey:@"dia"];
-            [cell.powerRightBtn setTitle:[powerDetails valueForKey:@"os"] forState:UIControlStateNormal];
-            [cell.powerLeftBtn setTitle:[powerDetails valueForKey:@"od"] forState:UIControlStateNormal];
-            [cell.bcRightBtn setTitle:[bcDetails valueForKey:@"os"] forState:UIControlStateNormal];
-            [cell.bcLeftBtn setTitle:[bcDetails valueForKey:@"od"] forState:UIControlStateNormal];
-            [cell.diaRightBtn setTitle:[diaDetails valueForKey:@"os"] forState:UIControlStateNormal];
-            [cell.diaLeftBtn setTitle:[diaDetails valueForKey:@"od"] forState:UIControlStateNormal];
+            [cell.powerRightBtn setTitle:[powerDetails valueForKey:@"od"] forState:UIControlStateNormal];
+            [cell.powerLeftBtn setTitle:[powerDetails valueForKey:@"os"] forState:UIControlStateNormal];
+            [cell.bcRightBtn setTitle:[bcDetails valueForKey:@"od"] forState:UIControlStateNormal];
+            [cell.bcLeftBtn setTitle:[bcDetails valueForKey:@"os"] forState:UIControlStateNormal];
+            [cell.diaRightBtn setTitle:[diaDetails valueForKey:@"od"] forState:UIControlStateNormal];
+            [cell.diaLeftBtn setTitle:[diaDetails valueForKey:@"os"] forState:UIControlStateNormal];
             }
         if (self.isRegularContactLensSelected)
         {
@@ -486,8 +486,8 @@
         {
             NSDictionary *addDetails = [contactLensDetails valueForKey:@"add"];
             if ((contactLensDetails) && (addDetails)){
-                [cell.cylinderOrAddLefthBtn setTitle:[addDetails valueForKey:@"od"] forState:UIControlStateNormal];
-                [cell.cylinderOrAddRigthBtn setTitle:[addDetails valueForKey:@"os"] forState:UIControlStateNormal];
+                [cell.cylinderOrAddLefthBtn setTitle:[addDetails valueForKey:@"os"] forState:UIControlStateNormal];
+                [cell.cylinderOrAddRigthBtn setTitle:[addDetails valueForKey:@"od"] forState:UIControlStateNormal];
             }
             [btn setTitle:@"Bifocal Contacts" forState:UIControlStateNormal];
             [self.contactLensDetails setValue:@"Bifocal Contacts" forKey:@"contactType"];
@@ -503,11 +503,11 @@
             NSDictionary *cylinderDetails = [contactLensDetails valueForKey:@"cylinder"];
             NSDictionary *axisDetails = [contactLensDetails valueForKey:@"axis"];
             if (cylinderDetails && axisDetails){
-                [cell.cylinderOrAddLefthBtn setTitle:[cylinderDetails valueForKey:@"od"] forState:UIControlStateNormal];
-                [cell.cylinderOrAddRigthBtn setTitle:[cylinderDetails valueForKey:@"os"] forState:
+                [cell.cylinderOrAddLefthBtn setTitle:[cylinderDetails valueForKey:@"os"] forState:UIControlStateNormal];
+                [cell.cylinderOrAddRigthBtn setTitle:[cylinderDetails valueForKey:@"od"] forState:
                  UIControlStateNormal];
-                [cell.axisRigthBtn setTitle:[axisDetails valueForKey:@"os"] forState:UIControlStateNormal];
-                [cell.axisLeftBtn setTitle:[axisDetails valueForKey:@"od"] forState:
+                [cell.axisRigthBtn setTitle:[axisDetails valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.axisLeftBtn setTitle:[axisDetails valueForKey:@"os"] forState:
                  UIControlStateNormal];
             }
             
@@ -526,6 +526,7 @@
         NotesTableViewCell *cell = (NotesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NotesTableViewCell" forIndexPath:indexPath];
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 4.0f;
+        cell.delegate = self;
         if (self.editableDetails)
         {
             if([[self.neededConfiguration objectForKey:@"prescriptionInfo"] objectForKey:@"notes"])
@@ -560,10 +561,10 @@
             if ([self.editableDetails valueForKey:@"prescriptionGlasses"]){
                 NSDictionary *sphere = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"sphere"];
                 NSDictionary *cylinder = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"cylinder"];
-                [cell.sphereRightBtn setTitle:[sphere valueForKey:@"os"] forState:UIControlStateNormal];
-                [cell.sphereLeftBtn setTitle:[sphere valueForKey:@"od"] forState:UIControlStateNormal];
-                [cell.cylinderRightBtn setTitle:[cylinder valueForKey:@"os"] forState:UIControlStateNormal];
-                [cell.cylinderLeftBtn setTitle:[cylinder valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.sphereRightBtn setTitle:[sphere valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.sphereLeftBtn setTitle:[sphere valueForKey:@"os"] forState:UIControlStateNormal];
+                [cell.cylinderRightBtn setTitle:[cylinder valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.cylinderLeftBtn setTitle:[cylinder valueForKey:@"os"] forState:UIControlStateNormal];
             }
         }
         cell.backgroundColor = [UIColor whiteColor];
@@ -578,8 +579,8 @@
             if ([self.editableDetails valueForKey:@"prescriptionGlasses"]){
                 NSDictionary *axis = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"axis"];
                 NSDictionary *add = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"add"];
-                [cell.lensAxisRigthBtn setTitle:[axis valueForKey:@"os"] forState:UIControlStateNormal];
-                [cell.lensAxisLeftBtn setTitle:[axis valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.lensAxisRigthBtn setTitle:[axis valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.lensAxisLeftBtn setTitle:[axis valueForKey:@"os"] forState:UIControlStateNormal];
                 [cell.lensAddLeftBtn setTitle:[add valueForKey:@"os"] forState:UIControlStateNormal];
                 [cell.lensAddRigthBtn setTitle:[add valueForKey:@"od"] forState:UIControlStateNormal];
             }
@@ -602,8 +603,8 @@
                     NSDictionary *base = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"base"];
                     [cell.prismRightBtn setTitle:[prism valueForKey:@"prismOs"] forState:UIControlStateNormal];
                     [cell.prismLeftBtn setTitle:[prism valueForKey:@"prismOd"] forState:UIControlStateNormal];
-                    [cell.baseRightBtn setTitle:[base valueForKey:@"os"] forState:UIControlStateNormal];
-                    [cell.baseLeftBtn setTitle:[base valueForKey:@"od"] forState:UIControlStateNormal];
+                    [cell.baseRightBtn setTitle:[base valueForKey:@"od"] forState:UIControlStateNormal];
+                    [cell.baseLeftBtn setTitle:[base valueForKey:@"os"] forState:UIControlStateNormal];
                 }
             }
         }else if(self.prismSelectionType == NO_SELECTED){
@@ -629,7 +630,7 @@
             [cell.singlePDBtn setImage:[UIImage imageNamed:@"select_check-mark"] forState:UIControlStateNormal];
             [cell.dualPDBtn setImage:[UIImage imageNamed:@"unselected_radiobutton"] forState:UIControlStateNormal];
             if (self.editableDetails){
-                [cell.rightPDBtn setTitle:[signlePD valueForKey:@"os"] forState:UIControlStateNormal];
+                [cell.rightPDBtn setTitle:signlePD forState:UIControlStateNormal];
             }
         }else if(self.isDualPDSelected || (dualPD != nil)){
             [cell.singlePDBtn setImage:[UIImage imageNamed:@"unselected_radiobutton"] forState:UIControlStateNormal];
@@ -637,8 +638,8 @@
             if (self.editableDetails){
                 //[cell.rightPDBtn setHidden:NO];
                // [cell.leftPDBtn setHidden:NO];
-                [cell.rightPDBtn setTitle:[dualPD valueForKey:@"os"] forState:UIControlStateNormal];
-                [cell.leftPDBtn setTitle:[dualPD valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.rightPDBtn setTitle:[dualPD valueForKey:@"od"] forState:UIControlStateNormal];
+                [cell.leftPDBtn setTitle:[dualPD valueForKey:@"os"] forState:UIControlStateNormal];
                 //[cell.rightPDBtn setNeedsDisplay];
                 //[cell.leftPDBtn setNeedsLayout];
             }
@@ -1105,15 +1106,15 @@
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                     NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"power"];
                     [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
+                    [newDict setValue:item forKey:@"od"];
                     [self.contactLensDetails setObject:newDict forKey:@"power"];
                 }else{
-                    [[self.contactLensDetails objectForKey:@"power"]  setValue:item forKey:@"os"];
+                    [[self.contactLensDetails objectForKey:@"power"]  setValue:item forKey:@"od"];
                 }
             }else{
                 NSMutableDictionary *powerDetails = [NSMutableDictionary dictionaryWithCapacity:2];
                 [self.contactLensDetails setObject:powerDetails forKey:@"power"];
-                [powerDetails setValue:item forKey:@"os"];
+                [powerDetails setValue:item forKey:@"od"];
             }
             
         }else if(btn.tag == POWER_LEFT) // LEFT POWER
@@ -1123,35 +1124,17 @@
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                     NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"power"];
                     [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"od"];
+                    [newDict setValue:item forKey:@"os"];
                     [self.contactLensDetails setObject:newDict forKey:@"power"];
                 }else{
-                    [[self.contactLensDetails objectForKey:@"power"] setValue:item forKey:@"od"];
+                    [[self.contactLensDetails objectForKey:@"power"] setValue:item forKey:@"os"];
                 }
             }else{
                 NSMutableDictionary *powerDetails = [NSMutableDictionary dictionaryWithCapacity:2];
                 [self.contactLensDetails setObject:powerDetails forKey:@"power"];
-                [powerDetails setValue:item forKey:@"od"];
+                [powerDetails setValue:item forKey:@"os"];
             }
         }else if(btn.tag == BC_RIGHT) // BC RIGHT
-        {
-            if ([self.contactLensDetails objectForKey:@"bc"]){
-                if (self.editableDetails){
-                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"bc"];
-                    [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
-                    [self.contactLensDetails setObject:newDict forKey:@"bc"];
-                }else{
-                    [[self.contactLensDetails objectForKey:@"bc"]  setValue:item forKey:@"os"];
-                }
-            }else{
-                NSMutableDictionary *bcDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.contactLensDetails setObject:bcDetails forKey:@"bc"];
-                [bcDetails setValue:item forKey:@"os"];
-            }
-        }
-        else if(btn.tag == BC_LEFT) //BC  LEFT
         {
             if ([self.contactLensDetails objectForKey:@"bc"]){
                 if (self.editableDetails){
@@ -1169,31 +1152,28 @@
                 [bcDetails setValue:item forKey:@"od"];
             }
         }
+        else if(btn.tag == BC_LEFT) //BC  LEFT
+        {
+            if ([self.contactLensDetails objectForKey:@"bc"]){
+                if (self.editableDetails){
+                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"bc"];
+                    [newDict addEntriesFromDictionary:oldDict];
+                    [newDict setValue:item forKey:@"os"];
+                    [self.contactLensDetails setObject:newDict forKey:@"bc"];
+                }else{
+                    [[self.contactLensDetails objectForKey:@"bc"]  setValue:item forKey:@"os"];
+                }
+            }else{
+                NSMutableDictionary *bcDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.contactLensDetails setObject:bcDetails forKey:@"bc"];
+                [bcDetails setValue:item forKey:@"os"];
+            }
+        }
         else if(btn.tag == DIA_RIGHT) // DIA RIGHT
         {
             if ([self.contactLensDetails objectForKey:@"dia"]){
                 if (self.editableDetails){
-                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"dia"];
-                    [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
-                    [self.contactLensDetails setObject:newDict forKey:@"dia"];
-                }else{
-                    [[self.contactLensDetails objectForKey:@"dia"] setValue:item forKey:@"os"];
-                }
-                
-            }else{
-                NSMutableDictionary *diaDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.contactLensDetails setObject:diaDetails forKey:@"dia"];
-                [diaDetails setValue:item forKey:@"os"];
-            }
-            
-        }
-        else if(btn.tag == DIA_LEFT) // DIA LEFT
-        {
-            if ([self.contactLensDetails objectForKey:@"dia"]){
-                if (self.editableDetails){
-                    
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                     NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"dia"];
                     [newDict addEntriesFromDictionary:oldDict];
@@ -1208,46 +1188,29 @@
                 [self.contactLensDetails setObject:diaDetails forKey:@"dia"];
                 [diaDetails setValue:item forKey:@"od"];
             }
+            
+        }
+        else if(btn.tag == DIA_LEFT) // DIA LEFT
+        {
+            if ([self.contactLensDetails objectForKey:@"dia"]){
+                if (self.editableDetails){
+                    
+                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"dia"];
+                    [newDict addEntriesFromDictionary:oldDict];
+                    [newDict setValue:item forKey:@"os"];
+                    [self.contactLensDetails setObject:newDict forKey:@"dia"];
+                }else{
+                    [[self.contactLensDetails objectForKey:@"dia"] setValue:item forKey:@"os"];
+                }
+                
+            }else{
+                NSMutableDictionary *diaDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.contactLensDetails setObject:diaDetails forKey:@"dia"];
+                [diaDetails setValue:item forKey:@"os"];
+            }
         }
         else if(btn.tag == ADD_RIGHT) // ADD RIGHT
-        {
-            if (self.isAstigmatismSelected){
-                if ([self.contactLensDetails objectForKey:@"cylinder"]){
-                    if (self.editableDetails){
-                        NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                        NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"cylinder"];
-                        [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"os"];
-                        [self.contactLensDetails setObject:newDict forKey:@"cylinder"];
-                    }else{
-                        [[self.contactLensDetails objectForKey:@"cylinder"] setValue:item forKey:@"os"];
-                    }
-                }else{
-                    NSMutableDictionary *cylinderDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                    [self.contactLensDetails setObject:cylinderDetails forKey:@"cylinder"];
-                    [cylinderDetails setValue:item forKey:@"os"];
-                }
-            }else{
-                if ([self.contactLensDetails objectForKey:@"add"]){
-                    if (self.editableDetails){
-                        NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                        NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"add"];
-                        [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"os"];
-                        [self.contactLensDetails setObject:newDict forKey:@"add"];
-                    }else{
-                        [[self.contactLensDetails objectForKey:@"add"] setValue:item forKey:@"os"];
-                    }
-                    
-                }else{
-                    NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                    [self.contactLensDetails setObject:addDetails forKey:@"add"];
-                    [addDetails setValue:item forKey:@"os"];
-                }
-            }
-            
-            
-        }else if(btn.tag == ADD_LEFT) // ADD LEFT
         {
             if (self.isAstigmatismSelected){
                 if ([self.contactLensDetails objectForKey:@"cylinder"]){
@@ -1260,7 +1223,6 @@
                     }else{
                         [[self.contactLensDetails objectForKey:@"cylinder"] setValue:item forKey:@"od"];
                     }
-                    
                 }else{
                     NSMutableDictionary *cylinderDetails = [NSMutableDictionary dictionaryWithCapacity:2];
                     [self.contactLensDetails setObject:cylinderDetails forKey:@"cylinder"];
@@ -1284,26 +1246,46 @@
                     [addDetails setValue:item forKey:@"od"];
                 }
             }
-        }else if(btn.tag == AXIS_RIGHT) // AXIS RIGHT
-        {
-            if ([self.contactLensDetails objectForKey:@"axis"]){
-                if (self.editableDetails){
-                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"axis"];
-                    [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
-                    [self.contactLensDetails setObject:newDict forKey:@"axis"];
-                }else{
-                    [[self.contactLensDetails objectForKey:@"axis"] setValue:item forKey:@"os"];
-                }
-                
-            }else{
-                NSMutableDictionary *axisDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.contactLensDetails setObject:axisDetails forKey:@"axis"];
-                [axisDetails setValue:item forKey:@"os"];
-            }
             
-        }else if(btn.tag == AXIS_LEFT)
+            
+        }else if(btn.tag == ADD_LEFT) // ADD LEFT
+        {
+            if (self.isAstigmatismSelected){
+                if ([self.contactLensDetails objectForKey:@"cylinder"]){
+                    if (self.editableDetails){
+                        NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                        NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"cylinder"];
+                        [newDict addEntriesFromDictionary:oldDict];
+                        [newDict setValue:item forKey:@"os"];
+                        [self.contactLensDetails setObject:newDict forKey:@"cylinder"];
+                    }else{
+                        [[self.contactLensDetails objectForKey:@"cylinder"] setValue:item forKey:@"os"];
+                    }
+                    
+                }else{
+                    NSMutableDictionary *cylinderDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                    [self.contactLensDetails setObject:cylinderDetails forKey:@"cylinder"];
+                    [cylinderDetails setValue:item forKey:@"os"];
+                }
+            }else{
+                if ([self.contactLensDetails objectForKey:@"add"]){
+                    if (self.editableDetails){
+                        NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                        NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"add"];
+                        [newDict addEntriesFromDictionary:oldDict];
+                        [newDict setValue:item forKey:@"os"];
+                        [self.contactLensDetails setObject:newDict forKey:@"add"];
+                    }else{
+                        [[self.contactLensDetails objectForKey:@"add"] setValue:item forKey:@"os"];
+                    }
+                    
+                }else{
+                    NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                    [self.contactLensDetails setObject:addDetails forKey:@"add"];
+                    [addDetails setValue:item forKey:@"os"];
+                }
+            }
+        }else if(btn.tag == AXIS_RIGHT) // AXIS RIGHT
         {
             if ([self.contactLensDetails objectForKey:@"axis"]){
                 if (self.editableDetails){
@@ -1321,6 +1303,25 @@
                 [self.contactLensDetails setObject:axisDetails forKey:@"axis"];
                 [axisDetails setValue:item forKey:@"od"];
             }
+            
+        }else if(btn.tag == AXIS_LEFT)
+        {
+            if ([self.contactLensDetails objectForKey:@"axis"]){
+                if (self.editableDetails){
+                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                    NSDictionary *oldDict = [self.contactLensDetails objectForKey:@"axis"];
+                    [newDict addEntriesFromDictionary:oldDict];
+                    [newDict setValue:item forKey:@"os"];
+                    [self.contactLensDetails setObject:newDict forKey:@"axis"];
+                }else{
+                    [[self.contactLensDetails objectForKey:@"axis"] setValue:item forKey:@"os"];
+                }
+                
+            }else{
+                NSMutableDictionary *axisDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.contactLensDetails setObject:axisDetails forKey:@"axis"];
+                [axisDetails setValue:item forKey:@"os"];
+            }
         }
         else if(btn.tag == PRESCRIPTION_TYPE)
         {
@@ -1328,24 +1329,6 @@
             
         }
         else if(btn.tag == SPHERE_RIGHT)
-        {
-            if ([self.regularLensDetails objectForKey:@"sphere"]){
-                if (self.editableDetails){
-                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"sphere"];
-                    [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
-                    [self.regularLensDetails setObject:newDict forKey:@"sphere"];
-                }else{
-                    [[self.regularLensDetails objectForKey:@"sphere"] setValue:item forKey:@"os"];
-                }
-            }else{
-                NSMutableDictionary *sphereDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:sphereDetails forKey:@"sphere"];
-                [sphereDetails setValue:item forKey:@"os"];
-            }
-        }
-        else if(btn.tag == SPHERE_LEFT)
         {
             if ([self.regularLensDetails objectForKey:@"sphere"]){
                 if (self.editableDetails){
@@ -1363,25 +1346,25 @@
                 [sphereDetails setValue:item forKey:@"od"];
             }
         }
-        else if(btn.tag == CYLINDER_RIGHT)
+        else if(btn.tag == SPHERE_LEFT)
         {
-            if ([self.regularLensDetails objectForKey:@"cylinder"]){
+            if ([self.regularLensDetails objectForKey:@"sphere"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"cylinder"];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"sphere"];
                     [newDict addEntriesFromDictionary:oldDict];
                     [newDict setValue:item forKey:@"os"];
-                    [self.regularLensDetails setObject:newDict forKey:@"cylinder"];
+                    [self.regularLensDetails setObject:newDict forKey:@"sphere"];
                 }else{
-                    [[self.regularLensDetails objectForKey:@"cylinder"] setValue:item forKey:@"os"];
+                    [[self.regularLensDetails objectForKey:@"sphere"] setValue:item forKey:@"os"];
                 }
             }else{
-                NSMutableDictionary *cylinderDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:cylinderDetails forKey:@"cylinder"];
-                [cylinderDetails setValue:item forKey:@"os"];
+                NSMutableDictionary *sphereDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.regularLensDetails setObject:sphereDetails forKey:@"sphere"];
+                [sphereDetails setValue:item forKey:@"os"];
             }
-
-        }else if(btn.tag == CYLINDER_LEFT)
+        }
+        else if(btn.tag == CYLINDER_RIGHT)
         {
             if ([self.regularLensDetails objectForKey:@"cylinder"]){
                 if (self.editableDetails){
@@ -1398,25 +1381,26 @@
                 [self.regularLensDetails setObject:cylinderDetails forKey:@"cylinder"];
                 [cylinderDetails setValue:item forKey:@"od"];
             }
-        }
-        else if(btn.tag == AXIS_REGULAR_RIGHT)
+
+        }else if(btn.tag == CYLINDER_LEFT)
         {
-            if ([self.regularLensDetails objectForKey:@"axis"]){
+            if ([self.regularLensDetails objectForKey:@"cylinder"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"axis"];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"cylinder"];
                     [newDict addEntriesFromDictionary:oldDict];
                     [newDict setValue:item forKey:@"os"];
-                    [self.regularLensDetails setObject:newDict forKey:@"axis"];
+                    [self.regularLensDetails setObject:newDict forKey:@"cylinder"];
                 }else{
-                    [[self.regularLensDetails objectForKey:@"axis"] setValue:item forKey:@"os"];
+                    [[self.regularLensDetails objectForKey:@"cylinder"] setValue:item forKey:@"os"];
                 }
             }else{
-                NSMutableDictionary *axisDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:axisDetails forKey:@"axis"];
-                [axisDetails setValue:item forKey:@"os"];
+                NSMutableDictionary *cylinderDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.regularLensDetails setObject:cylinderDetails forKey:@"cylinder"];
+                [cylinderDetails setValue:item forKey:@"os"];
             }
-        }else if(btn.tag == AXIS_REGULAR_LEFT)
+        }
+        else if(btn.tag == AXIS_REGULAR_RIGHT)
         {
             if ([self.regularLensDetails objectForKey:@"axis"]){
                 if (self.editableDetails){
@@ -1433,25 +1417,24 @@
                 [self.regularLensDetails setObject:axisDetails forKey:@"axis"];
                 [axisDetails setValue:item forKey:@"od"];
             }
-        }else if(btn.tag == ADD_REGULAR_RIGHT)
+        }else if(btn.tag == AXIS_REGULAR_LEFT)
         {
-            if ([self.regularLensDetails objectForKey:@"add"]){
+            if ([self.regularLensDetails objectForKey:@"axis"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"add"];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"axis"];
                     [newDict addEntriesFromDictionary:oldDict];
                     [newDict setValue:item forKey:@"os"];
-                    [self.regularLensDetails setObject:newDict forKey:@"add"];
+                    [self.regularLensDetails setObject:newDict forKey:@"axis"];
                 }else{
-                    [[self.regularLensDetails objectForKey:@"add"] setValue:item forKey:@"os"];
+                    [[self.regularLensDetails objectForKey:@"axis"] setValue:item forKey:@"os"];
                 }
             }else{
-                NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:addDetails forKey:@"add"];
-                [addDetails setValue:item forKey:@"os"];
+                NSMutableDictionary *axisDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.regularLensDetails setObject:axisDetails forKey:@"axis"];
+                [axisDetails setValue:item forKey:@"os"];
             }
-
-        }else if(btn.tag == ADD_REGULAR_LEFT)
+        }else if(btn.tag == ADD_REGULAR_RIGHT)
         {
             if ([self.regularLensDetails objectForKey:@"add"]){
                 if (self.editableDetails){
@@ -1468,25 +1451,26 @@
                 [self.regularLensDetails setObject:addDetails forKey:@"add"];
                 [addDetails setValue:item forKey:@"od"];
             }
-        }
-        else if(btn.tag == PRISM_RIGHT)
+
+        }else if(btn.tag == ADD_REGULAR_LEFT)
         {
-            if ([self.regularLensDetails objectForKey:@"prismValues"]){
+            if ([self.regularLensDetails objectForKey:@"add"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"prismValues"];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"add"];
                     [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"prismOs"];
-                    [self.regularLensDetails setObject:newDict forKey:@"prismValues"];
+                    [newDict setValue:item forKey:@"os"];
+                    [self.regularLensDetails setObject:newDict forKey:@"add"];
                 }else{
-                    [[self.regularLensDetails objectForKey:@"prismValues"] setValue:item forKey:@"prismOs"];
+                    [[self.regularLensDetails objectForKey:@"add"] setValue:item forKey:@"os"];
                 }
             }else{
                 NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:addDetails forKey:@"prismValues"];
-                [addDetails setValue:item forKey:@"prismOs"];
+                [self.regularLensDetails setObject:addDetails forKey:@"add"];
+                [addDetails setValue:item forKey:@"os"];
             }
-        }else if(btn.tag == PRISM_LEFT)
+        }
+        else if(btn.tag == PRISM_RIGHT)
         {
             if ([self.regularLensDetails objectForKey:@"prismValues"]){
                 if (self.editableDetails){
@@ -1503,27 +1487,27 @@
                 [self.regularLensDetails setObject:addDetails forKey:@"prismValues"];
                 [addDetails setValue:item forKey:@"prismOd"];
             }
+        }else if(btn.tag == PRISM_LEFT)
+        {
+            if ([self.regularLensDetails objectForKey:@"prismValues"]){
+                if (self.editableDetails){
+                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"prismValues"];
+                    [newDict addEntriesFromDictionary:oldDict];
+                    [newDict setValue:item forKey:@"prismOs"];
+                    [self.regularLensDetails setObject:newDict forKey:@"prismValues"];
+                }else{
+                    [[self.regularLensDetails objectForKey:@"prismValues"] setValue:item forKey:@"prismOs"];
+                }
+            }else{
+                NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.regularLensDetails setObject:addDetails forKey:@"prismValues"];
+                [addDetails setValue:item forKey:@"prismOs"];
+            }
         }
         
         else if(btn.tag == 33)
         {
-            if ([self.regularLensDetails objectForKey:@"base"]){
-                if (self.editableDetails){
-                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"base"];
-                    [newDict addEntriesFromDictionary:oldDict];
-                    [newDict setValue:item forKey:@"os"];
-                    [self.regularLensDetails setObject:newDict forKey:@"base"];
-                }else{
-                    [[self.regularLensDetails objectForKey:@"base"] setValue:item forKey:@"os"];
-                }
-            }else{
-                NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [self.regularLensDetails setObject:addDetails forKey:@"base"];
-                [addDetails setValue:item forKey:@"os"];
-            }
-        }
-        else if(btn.tag == 3333){
             if ([self.regularLensDetails objectForKey:@"base"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
@@ -1539,6 +1523,23 @@
                 [self.regularLensDetails setObject:addDetails forKey:@"base"];
                 [addDetails setValue:item forKey:@"od"];
             }
+        }
+        else if(btn.tag == 3333){
+            if ([self.regularLensDetails objectForKey:@"base"]){
+                if (self.editableDetails){
+                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                    NSDictionary *oldDict = [self.regularLensDetails objectForKey:@"base"];
+                    [newDict addEntriesFromDictionary:oldDict];
+                    [newDict setValue:item forKey:@"os"];
+                    [self.regularLensDetails setObject:newDict forKey:@"base"];
+                }else{
+                    [[self.regularLensDetails objectForKey:@"base"] setValue:item forKey:@"os"];
+                }
+            }else{
+                NSMutableDictionary *addDetails = [NSMutableDictionary dictionaryWithCapacity:2];
+                [self.regularLensDetails setObject:addDetails forKey:@"base"];
+                [addDetails setValue:item forKey:@"os"];
+            }
         }else if(btn.tag == 5678){
             if ([self.regularLensDetails objectForKey:@"pd"]){
                 if (self.editableDetails){
@@ -1547,28 +1548,27 @@
                     if ([[self.regularLensDetails valueForKey:@"isDualPd"] boolValue]){
                         oldDict = [[self.regularLensDetails objectForKey:@"pd"] objectForKey:@"dualPd"];
                         [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"os"];
-                        [self.regularLensDetails setObject:newDict forKey:@"singlePd"];
+                        [newDict setValue:item forKey:@"od"];
+                        [self.pdDetails setObject:newDict forKey:@"dualPd"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }else{
-                        oldDict = [[self.regularLensDetails objectForKey:@"pd"] objectForKey:@"singlePd"];
-                        [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"os"];
-                        [self.regularLensDetails setObject:newDict forKey:@"singlePd"];
+                        [self.pdDetails setObject:item forKey:@"singlePd"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }
                 }else{
                     if (self.isSinglePDSelected){
-                        [[self.pdDetails objectForKey:@"singlePd"] setValue:item forKey:@"os"];
-                        [self.regularLensDetails setObject:self.pdDetails forKey:@"singlePd"];
+                        [self.pdDetails setValue:item forKey:@"singlePd"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }else{
-                        [[self.pdDetails objectForKey:@"dualPd"] setValue:item forKey:@"os"];
-                        [self.regularLensDetails setObject:self.pdDetails forKey:@"dualPd"];
+                        [[self.pdDetails objectForKey:@"dualPd"] setValue:item forKey:@"od"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }
                 }
             }else{
                 NSMutableDictionary *pdDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [pdDetails setValue:item forKey:@"os"];
+                [pdDetails setValue:item forKey:@"od"];
                 if (self.isSinglePDSelected){
-                    [self.pdDetails setObject:pdDetails forKey:@"singlePd"];
+                    [self.pdDetails setObject:item forKey:@"singlePd"];
                 }else{
                     [self.pdDetails setObject:pdDetails forKey:@"dualPd"];
                 }
@@ -1580,33 +1580,20 @@
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                     NSDictionary *oldDict;
                     if ([[self.regularLensDetails valueForKey:@"isDualPd"] boolValue]){
-                        oldDict = [[self.regularLensDetails objectForKey:@"pd"] objectForKey:@"singlePd"];
-                        [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"od"];
-                        [self.regularLensDetails setObject:newDict forKey:@"singlePd"];
-                    }else{
                         oldDict = [[self.regularLensDetails objectForKey:@"pd"] objectForKey:@"dualPd"];
                         [newDict addEntriesFromDictionary:oldDict];
-                        [newDict setValue:item forKey:@"od"];
-                        [self.regularLensDetails setObject:newDict forKey:@"dualPd"];
+                        [newDict setValue:item forKey:@"os"];
+                        [self.pdDetails setObject:newDict forKey:@"dualPd"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }
                 }else{
-                    if (self.isSinglePDSelected){
-                        [[self.pdDetails objectForKey:@"singlePd"] setValue:item forKey:@"od"];
-                        [self.regularLensDetails setObject:self.pdDetails forKey:@"singlePd"];
-                    }else{
-                        [[self.pdDetails objectForKey:@"dualPd"] setValue:item forKey:@"od"];
-                        [self.regularLensDetails setObject:self.pdDetails forKey:@"dualPd"];
-                    }
+                        [[self.pdDetails objectForKey:@"dualPd"] setValue:item forKey:@"os"];
+                        [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                 }
             }else{
                 NSMutableDictionary *pdDetails = [NSMutableDictionary dictionaryWithCapacity:2];
-                [pdDetails setValue:item forKey:@"od"];
-                if (self.isSinglePDSelected){
-                    [self.pdDetails setObject:pdDetails forKey:@"singlePd"];
-                }else{
-                    [self.pdDetails setObject:pdDetails forKey:@"dualPd"];
-                }
+                [pdDetails setValue:item forKey:@"os"];
+                [self.pdDetails setObject:pdDetails forKey:@"dualPd"];
                 [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
             }
         }
@@ -2060,21 +2047,19 @@
         {
             [self showPopupWithContent:@"select Prism value"];
             return;
-        }else if(!self.isSinglePDSelected)
+        }else if(!self.isSinglePDSelected && !self.isDualPDSelected)
         {
-            if (!self.isDualPDSelected){
-                [self showPopupWithContent:@"select Pupillary value"];
-                return;
-            }
+            [self showPopupWithContent:@"select Pupillary value"];
+            return;
         }else if(self.isSinglePDSelected){
-            if (![[[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"singlePd"] valueForKey:@"os"] length]){
+            if (![[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"singlePd"] length]){
                 [self showPopupWithContent:@"select PD value"];
                 return;
             }
             
         }else if(self.isDualPDSelected){
-            if ((![[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"os"] length])||
-                (![[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"od"] length]))
+            if ((![[[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"] length])||
+                (![[[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"od"] length]))
             {
                 [self showPopupWithContent:@"select PD value"];
                 return;

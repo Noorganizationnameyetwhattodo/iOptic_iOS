@@ -43,34 +43,31 @@
         self.powerRight.text = [[prescriptionDetails valueForKey:@"power"] valueForKey:@"od"];
     }
     if ([prescriptionDetails valueForKey:@"bc"]){
-        self.bcRight.text = [[prescriptionDetails valueForKey:@"bc"] valueForKey:@"os"];
-        self.bcLeft.text = [[prescriptionDetails valueForKey:@"bc"] valueForKey:@"od"];
+        self.bcRight.text = [[prescriptionDetails valueForKey:@"bc"] valueForKey:@"od"];
+        self.bcLeft.text = [[prescriptionDetails valueForKey:@"bc"] valueForKey:@"os"];
     }
     
     if ([prescriptionDetails valueForKey:@"dia"]){
-        self.diaRight.text = [[prescriptionDetails valueForKey:@"dia"] valueForKey:@"os"];
-        self.diaLeft.text = [[prescriptionDetails valueForKey:@"dia"] valueForKey:@"od"];
+        self.diaRight.text = [[prescriptionDetails valueForKey:@"dia"] valueForKey:@"od"];
+        self.diaLeft.text = [[prescriptionDetails valueForKey:@"dia"] valueForKey:@"os"];
     }else{
-        [self.diaRight setHidden:YES];
-        [self.diaLeft setHidden:YES];
-
+        self.diaRight.text = @"-";
+        self.diaLeft.text = @"-";
     }
     
     if ([prescriptionDetails valueForKey:@"axis"]){
-        self.axisRight.text = [[prescriptionDetails valueForKey:@"axis"] valueForKey:@"os"];
-        self.axisLeft.text = [[prescriptionDetails valueForKey:@"axis"] valueForKey:@"od"];
+        self.axisRight.text = [[prescriptionDetails valueForKey:@"axis"] valueForKey:@"od"];
+        self.axisLeft.text = [[prescriptionDetails valueForKey:@"axis"] valueForKey:@"os"];
     }else{
-        [self.axisRight setHidden:YES];
-        [self.axisLeft setHidden:YES];
-        
+        self.axisRight.text = @"-";
+        self.axisLeft.text = @"-";
     }
     if ([prescriptionDetails valueForKey:@"cylinder"]){
-        self.cylinderRight.text = [[prescriptionDetails valueForKey:@"cylinder"] valueForKey:@"os"];
-        self.cylinderLeft.text = [[prescriptionDetails valueForKey:@"cylinder"] valueForKey:@"od"];
+        self.cylinderRight.text = [[prescriptionDetails valueForKey:@"cylinder"] valueForKey:@"od"];
+        self.cylinderLeft.text = [[prescriptionDetails valueForKey:@"cylinder"] valueForKey:@"os"];
     }else{
-        [self.cylinderRight setHidden:YES];
-        [self.cylinderLeft setHidden:YES];
-        
+        self.cylinderRight.text = @"-";
+        self.cylinderLeft.text = @"-";
     }
     
 }

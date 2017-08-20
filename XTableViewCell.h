@@ -76,6 +76,8 @@
 
 @property (weak, nonatomic) IBOutlet UIStackView *dualPDView;
 
+@property (weak, nonatomic) IBOutlet UILabel *rightPDStaticLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dualPDStaticLabel;
 
 
 

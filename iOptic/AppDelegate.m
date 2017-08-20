@@ -237,7 +237,7 @@ didSignInForUser:(GIDGoogleUser *)user
 
 -(void)continueWithLaunch
 {
-    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isTutorialShown"] boolValue]){
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isTutorialShown"] boolValue]){
         [self showLoginScreen];
     }else{
         [self showTutorial];

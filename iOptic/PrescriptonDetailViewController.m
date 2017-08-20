@@ -239,6 +239,8 @@
         NotesTableViewCell *tableViewCell = (NotesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NotesTableViewCell" forIndexPath:indexPath];
         if ([[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"]){
             [tableViewCell.notesDescLbl setEditable:NO];
+            [tableViewCell.notesLabel setFont:[UIFont italicSystemFontOfSize:17.0f]];
+            [tableViewCell.notesDescLbl setFont:[UIFont italicSystemFontOfSize:17.0f]];
             [tableViewCell.notesDescLbl setText:[[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"]];
         }
         return tableViewCell;

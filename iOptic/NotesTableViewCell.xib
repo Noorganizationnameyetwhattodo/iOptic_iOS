@@ -52,6 +52,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="notesDescLbl" destination="oxv-Bq-vao" id="aKN-Ww-e8v"/>
+                <outlet property="notesLabel" destination="Bb9-hk-OxI" id="cl7-qU-RpH"/>
             </connections>
             <point key="canvasLocation" x="31.5" y="166.5"/>
         </tableViewCell>

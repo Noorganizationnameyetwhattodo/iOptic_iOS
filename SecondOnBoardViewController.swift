@@ -13,6 +13,7 @@ class SecondOnBoardViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageView.image = UIImage(named: "2_70")
 
         // Do any additional setup after loading the view.
 //        let appDelegate = UIApplication.shared.delegate as! AppDelegate

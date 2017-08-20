@@ -59,21 +59,21 @@
     }
     
     if ([currentPrescriptionDict valueForKey:@"axis"]){
-        self.axisRightValue.text = [[currentPrescriptionDict valueForKey:@"axis"] valueForKey:@"os"];
-        self.axisLeftValue.text = [[currentPrescriptionDict valueForKey:@"axis"] valueForKey:@"od"];
+        self.axisRightValue.text = [[currentPrescriptionDict valueForKey:@"axis"] valueForKey:@"od"];
+        self.axisLeftValue.text = [[currentPrescriptionDict valueForKey:@"axis"] valueForKey:@"os"];
     }
     if ([currentPrescriptionDict valueForKey:@"add"]){
-        self.addRigthtValue.text = [[currentPrescriptionDict valueForKey:@"add"] valueForKey:@"os"];
-        self.addLeftValue.text = [[currentPrescriptionDict valueForKey:@"add"] valueForKey:@"od"];
+        self.addRigthtValue.text = [[currentPrescriptionDict valueForKey:@"add"] valueForKey:@"od"];
+        self.addLeftValue.text = [[currentPrescriptionDict valueForKey:@"add"] valueForKey:@"os"];
     }
     
     if ([currentPrescriptionDict valueForKey:@"sphere"]){
-        self.sphereRightHeader.text = [[currentPrescriptionDict valueForKey:@"sphere"] valueForKey:@"os"];
-        self.sphereLeftHeader.text = [[currentPrescriptionDict valueForKey:@"sphere"] valueForKey:@"od"];
+        self.sphereRightHeader.text = [[currentPrescriptionDict valueForKey:@"sphere"] valueForKey:@"od"];
+        self.sphereLeftHeader.text = [[currentPrescriptionDict valueForKey:@"sphere"] valueForKey:@"os"];
     }
     if ([currentPrescriptionDict valueForKey:@"cylinder"]){
-        self.cylinderRightLabel.text = [[currentPrescriptionDict valueForKey:@"cylinder"] valueForKey:@"os"];
-        self.cylinderLeftLabel.text = [[currentPrescriptionDict valueForKey:@"cylinder"] valueForKey:@"od"];
+        self.cylinderRightLabel.text = [[currentPrescriptionDict valueForKey:@"cylinder"] valueForKey:@"od"];
+        self.cylinderLeftLabel.text = [[currentPrescriptionDict valueForKey:@"cylinder"] valueForKey:@"os"];
     }else{
         
     }
@@ -81,26 +81,28 @@
         self.prismRightValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOs"];
         self.prismLeftValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOd"];
     }else{
-        self.prismRightValue.text = @"select";
-        self.prismLeftValue.text = @"select";
+        self.prismRightValue.text = @"-";
+        self.prismLeftValue.text = @"-";
     }
     if ([currentPrescriptionDict valueForKey:@"base"]){
-        self.baseRigthtValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"os"];
-        self.baseLeftValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"od"];
+        self.baseRigthtValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"od"];
+        self.baseLeftValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"os"];
     }else{
-        self.baseRigthtValue.text = @"select";
-        self.baseLeftValue.text = @"select";
+        self.baseRigthtValue.text = @"-";
+        self.baseLeftValue.text = @"-";
     }
     
     if ([[currentPrescriptionDict valueForKey:@"isDualPd"] boolValue]){
         if ([[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"] && [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"od"]){
-            self.pupillaryRightValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"];
-            self.pupillaryLeftValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"od"];
+            self.pupillaryRightValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"od"];
+            self.pupillaryLeftValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"];
         }
     }
         else { // single PD
-            self.pupillaryRightValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"singlePd"] valueForKey:@"os"];
+            self.pupillaryRightValueLbl.text = [[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"singlePd"];
             [self.dualPDView setHidden:YES];
+            self.dualPDStaticLabel.hidden = YES;
+            self.rightPDStaticLabel.text = @"puillary distance (PD)";
         }
     
     NSArray *specialGlasses = [currentPrescriptionDict valueForKey:@"specialGlass"];

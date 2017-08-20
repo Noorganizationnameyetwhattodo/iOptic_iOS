@@ -1002,6 +1002,7 @@
                 <outlet property="containerForLabels" destination="KUs-sO-UZF" id="dbD-aH-Byc"/>
                 <outlet property="cylinderLeftLabel" destination="O2B-RB-edu" id="56B-S6-Zpm"/>
                 <outlet property="cylinderRightLabel" destination="Wyk-Mm-6Hm" id="MFV-LJ-2ub"/>
+                <outlet property="dualPDStaticLabel" destination="oel-OM-gcC" id="WrF-IK-Uf5"/>
                 <outlet property="dualPDView" destination="V52-oJ-3Fc" id="5j3-75-ww9"/>
                 <outlet property="eightImgView" destination="dwJ-qG-9Ej" id="e5F-cm-hhF"/>
                 <outlet property="eightNotes" destination="UUG-Mx-DtK" id="yoi-x7-6Db"/>
@@ -1016,6 +1017,7 @@
                 <outlet property="prismRightValue" destination="RHJ-d0-X14" id="Zdg-cG-MLv"/>
                 <outlet property="pupillaryLeftValueLbl" destination="kTB-Le-8Xi" id="of1-XX-ynt"/>
                 <outlet property="pupillaryRightValueLbl" destination="0t1-mO-2vU" id="1Mf-Id-8EM"/>
+                <outlet property="rightPDStaticLabel" destination="QVQ-ZS-S9T" id="Ytq-qQ-B3q"/>
                 <outlet property="secondImgView" destination="14i-Cr-Eum" id="gux-Mg-7vY"/>
                 <outlet property="secondNote" destination="h04-ew-JmB" id="NZf-If-D40"/>
                 <outlet property="sevenImgView" destination="cN9-xE-UnH" id="w8k-aD-iS8"/>
