@@ -30,12 +30,12 @@
     if ([sender isSelected]){
         [sender setSelected:NO];
         [button setImage:[UIImage imageNamed:@"unchecked"] forState:UIControlStateNormal];
-        [self.delegate deSelectedSpecialGlass:[self.specialGlasses objectAtIndex:button.tag-1]];
+        [self.delegate deSelectedSpecialGlass:[self.specialGlasses objectAtIndex:button.tag]];
         
     }else{
         [button setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateSelected];
         [sender setSelected:YES];
-        [self.delegate selectedSpecialGlass:[self.specialGlasses objectAtIndex:button.tag-1]];
+        [self.delegate selectedSpecialGlass:[self.specialGlasses objectAtIndex:button.tag]];
 
 
     }

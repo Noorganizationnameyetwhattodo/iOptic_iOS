@@ -3,3 +3,6 @@
 //
 
 //#import "SplashViewController.h"
+
+#import "AppDelegate.h"
+#import "UIImage+animatedGIF.h"

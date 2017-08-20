@@ -7,6 +7,9 @@ target 'iOptic' do
 
   # Pods for iOptic
   
+  pod 'Firebase/Auth'
+  pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 
 
 

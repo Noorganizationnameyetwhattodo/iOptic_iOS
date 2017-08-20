@@ -13,6 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "QRCodeReaderViewController.h"
 #import "QRCodeReader.h"
+#import "NSString+Base64.h"
+
 
 
 
@@ -232,6 +234,12 @@
     [reader stopScanning];
     
     [self dismissViewControllerAnimated:YES completion:^{
+        NSString *decodedString = [NSString decodeBase64String:result];
+        
+        NSString *encodeString = [NSString encodeBase64String:result];
+        NSLog(@"encodeString:%@",encodeString);
+
+        NSLog(@"decodedString:%@",decodedString);
         NSData *nsdataFromBase64String = [[NSData alloc]
                                           initWithBase64EncodedString:result options:0];
         if (nsdataFromBase64String == nil){

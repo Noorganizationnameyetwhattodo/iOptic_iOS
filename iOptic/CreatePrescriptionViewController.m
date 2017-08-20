@@ -790,10 +790,17 @@
             [self reloadTableAtIndexPath:indexPath completionHandler:^(BOOL success) {
                 
             }];
+        }else if (type == SINGLE_PD_SELECTED){
+            self.isSinglePDSelected = YES;
+        }else if(type == DUAL_PD_SELECTED){
+            self.isDualPDSelected = YES;
+            [self.regularLensDetails setValue:[NSNumber numberWithBool:true] forKey:@"isDualPd"];
         }else{
             self.isSinglePDSelected = NO;
             self.isDualPDSelected = NO;
             [self.regularLensDetails setValue:[NSNumber numberWithBool:false] forKey:@"isDualPd"];
+
+
         }
 }
 
@@ -991,7 +998,7 @@
 
 -(IBAction)showPopupForSphere:(id)sender
 {
-    [self showPopupWithContent:@"Sphere(SPH). is the amount of lens power, measured in diopters(D), prescribed to correct nearsightedness or farsightedness. If the number of appearing under this heading has a minus sign(-), you are nearsighted; if teh number has a plus sign(+) or is not preceded by a plus sign or a minun sign, you are farsighted. Make sure to select the correct sign(+/-) while ordering."];
+    [self showPopupWithContent:@"Sphere(SPH). is the amount of lens power, measured in diopters(D), prescribed to correct nearsightedness or farsightedness. If the number of appearing under this heading has a minus sign(-), you are nearsighted; "];
 }
 
 -(IBAction)showPopupForCylinder:(id)sender
@@ -1002,36 +1009,36 @@
 
 -(IBAction)showPopupForAxis:(id)sender
 {
-    [self showPopupWithContent:@"Axis describes the lens meridian that contains no cylinder power to correct astigmatism. The axis is defined with a number from 1 to 180. If an eyeglass prescription includes cylinder power, it also must include an axis value, which follows the cyl power and is preceded by an x when written freehand."];
+    [self showPopupWithContent:@"Axis describes the lens meridian that contains ......"];
 }
 
 
 -(IBAction)showPopupForAdd:(id)sender
 {
-    [self showPopupWithContent:@"ADD. is the added magnifying power applied to the bottom part of multifocal lenses to correct reading vision. The number appearing in the section of the prescription is always a plus power, even if it is not preceded by a plus sign. Generally, it will range from +1.00 to +3.00."];
+    [self showPopupWithContent:@"ADD. is the added magnifying power applied to the bottom....."];
 }
 
 
 -(IBAction)showPopupForPrism:(id)sender
 {
-    [self showPopupWithContent:@"Prism is the amount of prismatic power, measured in prism diopters(or a superscript triangle when written freehand), prescribed to compensate for eye alignment problems. Only a small percentage of eyeglass precriptions include prism. When present, the amount of prism is indicated in either metric or fractional English units(0.5 or 1/2, for example), and the direction of the prism is indicated by noting the relative position of its base or thickest edge. Four abbreviations are used for prism direction: BU = base up; BD = base down; BI - base in(toward the wearer's nose); BO = base out(toward the wearer's ear)."];
+    [self showPopupWithContent:@"Prism is the amount of prismatic power, measured in ...."];
 }
 
 
 
 -(IBAction)showPopupForPower:(id)sender
 {
-    [self showPopupWithContent:@"Power,\n Sometimes called 'sphere' or 'strength'. Measured in diopters, it is always preceded by a + (plus) or a -(minus) and goes up in 0.25 increments."];
+    [self showPopupWithContent:@"Power is the amount of prismatic power, measured in ...."];
 }
 
 -(IBAction)showPopupForBC:(id)sender
 {
-    [self showPopupWithContent:@"BC,\n The shape of the back surface of the lens, which determines how the lens fits. It is usually an 8.x or 9.x number. A few brands use non-numeric base curves such as flat, median, or steep."];
+    [self showPopupWithContent:@"Bc is the power ...."];
 }
 
 -(IBAction)showPopupForDia:(id)sender
 {
-    [self showPopupWithContent:@"DIA,\n Refers to the width across the lens in millimeters. Most brands come in one or two sizes. It is usually a 14.x number, but can range from 13.x to 15.x."];
+    [self showPopupWithContent:@"Dia is the power ...."];
 }
 
 
@@ -1994,7 +2001,7 @@
         }
         if (![[[self.contactLensDetails valueForKey:@"power"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"power"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your POWER prescription"];
+            [self showPopupWithContent:@"Complete your Power prescription"];
             return;
         }
         
@@ -2039,21 +2046,21 @@
             return;
         }else if(![[[self.regularLensDetails valueForKey:@"sphere"] valueForKey:@"os"] length]||![[self.regularLensDetails valueForKey:@"sphere"] valueForKey:@"od"])
         {
-            [self showPopupWithContent:@"Complete your Sphere prescription"];
+            [self showPopupWithContent:@"select Sphere"];
             return;
         }else if(![[[self.regularLensDetails valueForKey:@"cylinder"] valueForKey:@"os"] length]||![[[self.regularLensDetails valueForKey:@"cylinder"] valueForKey:@"od"] length]) // //
         {
-            [self showPopupWithContent:@"Complete your Cylinder prescription"];
+            [self showPopupWithContent:@"select Cylinder"];
             return;
 
         }else if(![[[self.regularLensDetails valueForKey:@"axis"] valueForKey:@"os"] length]||![[[self.regularLensDetails valueForKey:@"axis"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your Axis prescription"];
+            [self showPopupWithContent:@"select Axis"];
             return;
 
         }else if(![[[self.regularLensDetails valueForKey:@"add"] valueForKey:@"os"] length]||![[[self.regularLensDetails valueForKey:@"add"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your Add prescription"];
+            [self showPopupWithContent:@"select Add"];
             return;
         }
         else if(self.prismSelectionType == NONE && !self.isDistanceLensSelected)
@@ -2082,11 +2089,11 @@
         }
         else if((self.prismSelectionType == YES_SELECTED) && !self.isDistanceLensSelected){
             if (![[[self.regularLensDetails valueForKey:@"prismValues"] valueForKey:@"prismOs"] length]||![[[self.regularLensDetails valueForKey:@"prismValues"] valueForKey:@"prismOd"] length]){
-                [self showPopupWithContent:@"Complete your Prism prescription"];
+                [self showPopupWithContent:@"select Prism value"];
                 return;
             }
             if (![[[self.regularLensDetails valueForKey:@"base"] valueForKey:@"os"] length]||![[[self.regularLensDetails valueForKey:@"base"] valueForKey:@"od"] length]){
-                [self showPopupWithContent:@"Complete your Base prescription"];
+                [self showPopupWithContent:@"select BASE value"];
                 return;
             }
         }
@@ -2309,11 +2316,6 @@
 - (void)leftPDSelected:(id)sender
 {
      [self pdPickerTapped:sender];
-}
-
--(void)pupillaryHelpTapped:(id)sender
-{
-    [self showPopupWithContent:@"PD is the distnace between your pupils. Usually, it ranges from 57 to 65 mm. Its is highly recommended to get your PD from your optometrist if you have a high power or if you are going to order bifocal, progressive or computer lenses."];
 }
 
 
