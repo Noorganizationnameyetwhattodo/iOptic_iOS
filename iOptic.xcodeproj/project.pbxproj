@@ -387,7 +387,6 @@
 		7FCA10191F48E5CF006EC9EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCA10181F48E5CF006EC9EF /* LoginViewController.swift */; };
 		7FCA101B1F48E65F006EC9EF /* iOptic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FCA101A1F48E65F006EC9EF /* iOptic.png */; };
 		7FD036D61F166A420077C417 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD036D51F166A420077C417 /* UIView+Toast.m */; };
-		7FD499F41F49777800B0163F /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD499F31F49777800B0163F /* NSString+Base64.m */; };
 		7FE847731F496AEB00F08453 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE847721F496AEB00F08453 /* GoogleService-Info.plist */; };
 		7FF59FDB1F13CFEE00C4A815 /* XTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF59FD91F13CFEE00C4A815 /* XTableViewCell.m */; };
 		7FF59FDC1F13CFEE00C4A815 /* XTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF59FDA1F13CFEE00C4A815 /* XTableViewCell.xib */; };
@@ -412,6 +411,7 @@
 		B140F98C1ED3CD360063D09C /* prescription_cell_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B140F97F1ED3CD360063D09C /* prescription_cell_image.png */; };
 		B140F98D1ED3CD360063D09C /* questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = B140F9801ED3CD360063D09C /* questionmark.png */; };
 		B140F98E1ED3CD360063D09C /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B140F9811ED3CD360063D09C /* unchecked.png */; };
+		B16110511F49CDBE00A3598C /* qr_code.png in Resources */ = {isa = PBXBuildFile; fileRef = B16110501F49CDBE00A3598C /* qr_code.png */; };
 		B17919AD1ED51304007B1F89 /* CreatePrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919A61ED51303007B1F89 /* CreatePrescriptionViewController.m */; };
 		B17919AE1ED51304007B1F89 /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919A81ED51304007B1F89 /* MenuItem.m */; };
 		B17919AF1ED51304007B1F89 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919AA1ED51304007B1F89 /* MenuViewController.m */; };
@@ -849,8 +849,6 @@
 		7FCA101A1F48E65F006EC9EF /* iOptic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iOptic.png; sourceTree = "<group>"; };
 		7FD036D41F166A420077C417 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		7FD036D51F166A420077C417 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		7FD499F21F49777800B0163F /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
-		7FD499F31F49777800B0163F /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		7FE847721F496AEB00F08453 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FF59FD81F13CFEE00C4A815 /* XTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTableViewCell.h; sourceTree = "<group>"; };
 		7FF59FD91F13CFEE00C4A815 /* XTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTableViewCell.m; sourceTree = "<group>"; };
@@ -881,6 +879,7 @@
 		B140F97F1ED3CD360063D09C /* prescription_cell_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prescription_cell_image.png; sourceTree = "<group>"; };
 		B140F9801ED3CD360063D09C /* questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = questionmark.png; sourceTree = "<group>"; };
 		B140F9811ED3CD360063D09C /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
+		B16110501F49CDBE00A3598C /* qr_code.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr_code.png; sourceTree = "<group>"; };
 		B17919A51ED51303007B1F89 /* CreatePrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePrescriptionViewController.h; sourceTree = "<group>"; };
 		B17919A61ED51303007B1F89 /* CreatePrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePrescriptionViewController.m; sourceTree = "<group>"; };
 		B17919A71ED51304007B1F89 /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
@@ -1458,15 +1457,6 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		7FD499F11F49776D00B0163F /* Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				7FD499F21F49777800B0163F /* NSString+Base64.h */,
-				7FD499F31F49777800B0163F /* NSString+Base64.m */,
-			);
-			name = Base64;
-			sourceTree = "<group>";
-		};
 		92FBA4241F302402002304CB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1479,6 +1469,7 @@
 		B13B28E61ED9AA05006ACBD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B16110501F49CDBE00A3598C /* qr_code.png */,
 				B1C0E3241EE142B5005B9DFB /* close_icon.png */,
 				B1C0E3221EE0F1CE005B9DFB /* settings_icon.png */,
 				B1C0E3201EE0F1C3005B9DFB /* about_icon.png */,
@@ -1513,7 +1504,6 @@
 		B140F9351ED3C1B40063D09C = {
 			isa = PBXGroup;
 			children = (
-				7FD499F11F49776D00B0163F /* Base64 */,
 				7FCA10111F48E552006EC9EF /* Login */,
 				7F8456F01F48C4F400751034 /* OnBoard */,
 				7F89099C1F47D69B002510A7 /* Splash */,
@@ -1647,7 +1637,7 @@
 				TargetAttributes = {
 					B140F93D1ED3C1B40063D09C = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = JWDCNYZ922;
+						DevelopmentTeam = 64QBF2DALA;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -1719,6 +1709,7 @@
 				7F8456811F48C48700751034 /* 3_40.png in Resources */,
 				7F84555C1F48C47B00751034 /* 2_17.png in Resources */,
 				7F8456C71F48C48700751034 /* 3_110.png in Resources */,
+				B16110511F49CDBE00A3598C /* qr_code.png in Resources */,
 				7F8456E01F48C48700751034 /* 3_135.png in Resources */,
 				7F8456CE1F48C48700751034 /* 3_117.png in Resources */,
 				7F8455B41F48C47B00751034 /* 2_105.png in Resources */,
@@ -2111,7 +2102,6 @@
 				7F0A5E691F4349420067D954 /* split.c in Sources */,
 				B17919C21ED5133F007B1F89 /* LGSideMenuGesturesHandler.m in Sources */,
 				7FCA10171F48E5A6006EC9EF /* ForgotPasswordViewController.swift in Sources */,
-				7FD499F41F49777800B0163F /* NSString+Base64.m in Sources */,
 				92FBA4271F302442002304CB /* CALayer+XibConfiguration.m in Sources */,
 				7F6D5A8D1EE3ADCA009CCDF5 /* LensTypeTableViewCell.m in Sources */,
 				7F6D5A831EE3AD87009CCDF5 /* PrismValuesTableViewCell.m in Sources */,
@@ -2287,11 +2277,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = JWDCNYZ922;
+				DEVELOPMENT_TEAM = 64QBF2DALA;
 				INFOPLIST_FILE = iOptic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOptic-Bridging-Header.h";
@@ -2307,11 +2297,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = JWDCNYZ922;
+				DEVELOPMENT_TEAM = 64QBF2DALA;
 				INFOPLIST_FILE = iOptic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOptic-Bridging-Header.h";

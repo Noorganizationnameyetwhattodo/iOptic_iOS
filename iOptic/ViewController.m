@@ -13,7 +13,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "QRCodeReaderViewController.h"
 #import "QRCodeReader.h"
-#import "NSString+Base64.h"
 
 
 
@@ -176,8 +175,6 @@
 }
 
 - (IBAction)CameraBtnPressed:(id)sender {
-    NSLog(@"camera button pressed");
-    
     if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
         static QRCodeReaderViewController *vc = nil;
         static dispatch_once_t onceToken;
@@ -201,32 +198,10 @@
         [alert show];
     }
 
-    
-    
-   /* if ([AVCaptureDevice respondsToSelector:@selector(requestAccessForMediaType: completionHandler:)]) {
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            // Will get here on both iOS 7 & 8 even though camera permissions weren't required
-            // until iOS 8. So for iOS 7 permission will always be granted.
-            if (granted) {
-                // Permission has been granted. Use dispatch_async for any UI updating
-                // code because this block may be executed in a thread.
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    ScanViewController *scanViewController = [storyboard instantiateViewControllerWithIdentifier:@"ScanViewController"];
-                    [self.navigationController pushViewController:scanViewController animated:YES] ;
-                });
-            } else {
-                // Permission has been denied.
-            }
-        }];
-    } else {
-        // We are on iOS <= 6. Just do what we need to do.
-        //[self doStuff];
-    }*/
-    
-
 }
+
+
+
 #pragma mark - QRCodeReader Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
@@ -234,39 +209,35 @@
     [reader stopScanning];
     
     [self dismissViewControllerAnimated:YES completion:^{
-        NSString *decodedString = [NSString decodeBase64String:result];
         
-        NSString *encodeString = [NSString encodeBase64String:result];
-        NSLog(@"encodeString:%@",encodeString);
-
-        NSLog(@"decodedString:%@",decodedString);
-        NSData *nsdataFromBase64String = [[NSData alloc]
-                                          initWithBase64EncodedString:result options:0];
-        if (nsdataFromBase64String == nil){
-            [self showErrorMessage];
-            return;
-        }
+        NSData *data = [[NSData alloc] initWithBase64EncodedString:result options:NSDataBase64DecodingIgnoreUnknownCharacters];
         
-        // Decoded NSString from the NSData
-        NSString *base64Decoded = [[NSString alloc]
-                                   initWithData:nsdataFromBase64String encoding:NSUTF8StringEncoding];
-        NSLog(@"base64Decoded:%@",base64Decoded);
+        //NSString *base64Decoded = [[NSString alloc]
+                                   //initWithData:data encoding:NSUTF8StringEncoding];
+        //NSLog(@"base64Decoded:%@",base64Decoded);
         NSError *jsonError = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:nsdataFromBase64String
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                              options:NSJSONReadingMutableContainers
                                                                error:&jsonError];
-        self.selectedPrescriptionName = [[json valueForKey:@"prescriptionInfo"] valueForKey:@"name"];
-        self.currentPrescription = json;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json                                                               options:NSJSONWritingPrettyPrinted error:&jsonError];
-        self.currentJSON = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        if (jsonError == nil){
-            [self performSegueWithIdentifier:@"showPrescprion" sender:self];
-        }else{
-         
-            
-
+        if(json)
+        {
+            self.selectedPrescriptionName = [[json valueForKey:@"prescriptionInfo"] valueForKey:@"name"];
+            self.currentPrescription = json;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json                                                               options:NSJSONWritingPrettyPrinted error:&jsonError];
+            self.currentJSON = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            if (jsonError == nil)
+            {
+                [self performSegueWithIdentifier:@"showPrescprion" sender:self];
+            }
+            else
+            {
+                
+            }
         }
-       
+        else
+        {
+            [self showErrorMessage];
+        }
     }];
 }
 

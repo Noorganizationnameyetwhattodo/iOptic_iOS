@@ -209,8 +209,6 @@
             tableViewCell.nameLbl.text = [[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"name"];
             tableViewCell.doctorNameLbl.text = [[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"doctorName"];
             tableViewCell.dateLbl.text = [[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"date"];
-            tableViewCell.dateLbl.text = [self.currentPrescriptionDict valueForKey:@"date"];
-            //[[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"date"];
         }
         return tableViewCell;
     }else if ((indexPath.section == 1)&& ([self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"])){
@@ -253,7 +251,6 @@
          NSString *base64Encoded = [nsdata base64EncodedStringWithOptions:0];
          
          
-         NSLog(@"base64Encoded:%@",base64Encoded);
          [tableViewCell updateQR:base64Encoded];
          return tableViewCell;
 
