@@ -7,51 +7,57 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 
-class ThirdOnBoardViewController: UIViewController {
+class ThirdOnBoardViewController: UIViewController,OnBoardPlayAnimation {
 
-    
+    @IBOutlet weak var headerLabel:UILabel!
+    @IBOutlet weak var continueButton:UIButton!
     @IBOutlet weak var imgView: UIImageView!
-    
+    var playerViewController:AVPlayerViewController = AVPlayerViewController()
+    var player:AVPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imgView.image = UIImage(named: "3_50")
-
-        // Do any additional setup after loading the view.
+        
+        playerViewController.showsPlaybackControls = false
+        playerViewController.view.frame = self.view.frame
+        self.imgView.addSubview(playerViewController.view)
+        self.view.bringSubview(toFront:headerLabel)
+        self.view.bringSubview(toFront:continueButton)
+        
+        self.playAnimation();
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        self.imgView.animationImages = appDelegate.thirdGIF as? [UIImage]
-//        self.imgView.animationDuration = 1.5
-//        self.imgView.animationRepeatCount = 0
-//        self.imgView.startAnimating()
-        //self.imageView.image = UIImage(named: "1_11")
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func startedTapped(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.showLoginScreen()
         UserDefaults.standard.set(true, forKey: "isTutorialShown")
 
+    }
+
+    func playAnimation()
+    {
+        DispatchQueue.main.async() {
+            let bundle = Bundle.main;
+            let moviePath = bundle.path(forResource: "3", ofType: "mov")
+            let movieUrl = NSURL.fileURL(withPath: moviePath!)
+            self.player = AVPlayer.init(url: movieUrl)
+            self.playerViewController.player = self.player
+            self.playerViewController.player?.play()
+        }
     }
 
 }

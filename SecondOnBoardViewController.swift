@@ -7,47 +7,56 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
-class SecondOnBoardViewController: UIViewController {
+class SecondOnBoardViewController: UIViewController,OnBoardPlayAnimation {
 
+    @IBOutlet weak var headerLabel:UILabel!
+    @IBOutlet weak var continueButton:UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    
+    var playerViewController:AVPlayerViewController = AVPlayerViewController()
+    var player:AVPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageView.image = UIImage(named: "2_70")
+        playerViewController.showsPlaybackControls = false
+        playerViewController.view.frame = self.view.frame
+        self.imageView.addSubview(playerViewController.view)
+        self.view.bringSubview(toFront:headerLabel)
+        self.view.bringSubview(toFront:continueButton)
 
-        // Do any additional setup after loading the view.
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        self.imageView.animationImages = appDelegate.secondGIF as? [UIImage]
-//        self.imageView.animationDuration = 1.5
-//        self.imageView.animationRepeatCount = 0
-//        self.imageView.startAnimating()
+        self.playAnimation();
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
-        //self.imageView.image = UIImage(named: "1_11")
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     @IBAction func continueTapped(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.walkthough.nextPage()
+    }
+
+    func playAnimation()
+    {
+        DispatchQueue.main.async() {
+            let bundle = Bundle.main;
+            let moviePath = bundle.path(forResource: "2", ofType: "mov")
+            let movieUrl = NSURL.fileURL(withPath: moviePath!)
+            self.player = AVPlayer.init(url: movieUrl)
+            self.playerViewController.player = self.player
+            self.playerViewController.player?.play()
+        }
     }
 
 }

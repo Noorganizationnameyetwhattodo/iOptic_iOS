@@ -423,6 +423,10 @@
 		B17919C41ED5133F007B1F89 /* LGSideMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919BB1ED5133F007B1F89 /* LGSideMenuSegue.m */; };
 		B17919C51ED5133F007B1F89 /* LGSideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919BD1ED5133F007B1F89 /* LGSideMenuView.m */; };
 		B17919C61ED5133F007B1F89 /* UIViewController+LGSideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17919BF1ED5133F007B1F89 /* UIViewController+LGSideMenuController.m */; };
+		B1A0B1761F4C07AF0068858C /* 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1A0B1751F4C07AF0068858C /* 1.mov */; };
+		B1A0B1781F4C0D270068858C /* 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1A0B1771F4C0D270068858C /* 2.mov */; };
+		B1A0B17A1F4C0D300068858C /* 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = B1A0B1791F4C0D300068858C /* 3.mov */; };
+		B1A0B17C1F4C19A10068858C /* OnBoardPlayAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A0B17B1F4C19A10068858C /* OnBoardPlayAnimation.swift */; };
 		B1C0E31D1EE0F0A9005B9DFB /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C0E31C1EE0F0A9005B9DFB /* home_icon.png */; };
 		B1C0E31F1EE0F0EA005B9DFB /* help_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C0E31E1EE0F0EA005B9DFB /* help_icon.png */; };
 		B1C0E3211EE0F1C3005B9DFB /* about_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1C0E3201EE0F1C3005B9DFB /* about_icon.png */; };
@@ -902,6 +906,10 @@
 		B17919BD1ED5133F007B1F89 /* LGSideMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSideMenuView.m; sourceTree = "<group>"; };
 		B17919BE1ED5133F007B1F89 /* UIViewController+LGSideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LGSideMenuController.h"; sourceTree = "<group>"; };
 		B17919BF1ED5133F007B1F89 /* UIViewController+LGSideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LGSideMenuController.m"; sourceTree = "<group>"; };
+		B1A0B1751F4C07AF0068858C /* 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 1.mov; sourceTree = "<group>"; };
+		B1A0B1771F4C0D270068858C /* 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 2.mov; sourceTree = "<group>"; };
+		B1A0B1791F4C0D300068858C /* 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 3.mov; sourceTree = "<group>"; };
+		B1A0B17B1F4C19A10068858C /* OnBoardPlayAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardPlayAnimation.swift; sourceTree = "<group>"; };
 		B1C0E31C1EE0F0A9005B9DFB /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		B1C0E31E1EE0F0EA005B9DFB /* help_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help_icon.png; sourceTree = "<group>"; };
 		B1C0E3201EE0F1C3005B9DFB /* about_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_icon.png; sourceTree = "<group>"; };
@@ -1423,9 +1431,13 @@
 				7F184AAD1F48E29500CE9480 /* AnimatedGif */,
 				7F7964741F47E6C30009442E /* 2_00000.gif */,
 				7F7964721F47E6BE0009442E /* 3_00000.gif */,
+				B1A0B1751F4C07AF0068858C /* 1.mov */,
+				B1A0B1771F4C0D270068858C /* 2.mov */,
+				B1A0B1791F4C0D300068858C /* 3.mov */,
 				7F8909AD1F47E420002510A7 /* 1_00000.gif */,
 				7F8456F71F48C64C00751034 /* OnBoard.storyboard */,
 				7F8456F11F48C4FF00751034 /* SwiftyOnboardVC.swift */,
+				B1A0B17B1F4C19A10068858C /* OnBoardPlayAnimation.swift */,
 				7F8456FA1F48C6C700751034 /* FirstOnBoardViewController.swift */,
 				7F8456FC1F48C6F600751034 /* SecondOnBoardViewController.swift */,
 				7F8456FE1F48C74000751034 /* ThirdOnBoardViewController.swift */,
@@ -1873,6 +1885,7 @@
 				7F8454BE1F48C46200751034 /* 1_24.png in Resources */,
 				7F8456A41F48C48700751034 /* 3_75.png in Resources */,
 				7F8455C21F48C47B00751034 /* 2_119.png in Resources */,
+				B1A0B1781F4C0D270068858C /* 2.mov in Resources */,
 				B140F98A1ED3CD360063D09C /* icon3.png in Resources */,
 				7F8456831F48C48700751034 /* 3_42.png in Resources */,
 				7F8455A11F48C47B00751034 /* 2_86.png in Resources */,
@@ -1886,6 +1899,7 @@
 				B1C0E31D1EE0F0A9005B9DFB /* home_icon.png in Resources */,
 				7F8455B51F48C47B00751034 /* 2_106.png in Resources */,
 				7F8456611F48C48700751034 /* 3_8.png in Resources */,
+				B1A0B17A1F4C0D300068858C /* 3.mov in Resources */,
 				7F84558E1F48C47B00751034 /* 2_67.png in Resources */,
 				7F8455C11F48C47B00751034 /* 2_118.png in Resources */,
 				7F8456A31F48C48700751034 /* 3_74.png in Resources */,
@@ -1984,6 +1998,7 @@
 				7F8454C01F48C46200751034 /* 1_26.png in Resources */,
 				7F0A5E521F4347C10067D954 /* QRCodeTableViewCelTableViewCell.xib in Resources */,
 				B140F9881ED3CD360063D09C /* icon1.png in Resources */,
+				B1A0B1761F4C07AF0068858C /* 1.mov in Resources */,
 				7F8455701F48C47B00751034 /* 2_37.png in Resources */,
 				7F8456781F48C48700751034 /* 3_31.png in Resources */,
 				7F8454B91F48C46200751034 /* 1_19.png in Resources */,
@@ -2098,6 +2113,7 @@
 				7F0ECFC61EE4790A00D98014 /* RightImagedButton.swift in Sources */,
 				7F184AB01F48E29F00CE9480 /* UIImage+animatedGIF.m in Sources */,
 				7FF59FDB1F13CFEE00C4A815 /* XTableViewCell.m in Sources */,
+				B1A0B17C1F4C19A10068858C /* OnBoardPlayAnimation.swift in Sources */,
 				B17919AD1ED51304007B1F89 /* CreatePrescriptionViewController.m in Sources */,
 				7F0A5E691F4349420067D954 /* split.c in Sources */,
 				B17919C21ED5133F007B1F89 /* LGSideMenuGesturesHandler.m in Sources */,

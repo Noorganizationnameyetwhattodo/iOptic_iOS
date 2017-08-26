@@ -300,7 +300,7 @@
                                                     <rect key="frame" x="18" y="123" width="320" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyF-fR-9Wg">
-                                                            <rect key="frame" x="232" y="8" width="60" height="30"/>
+                                                            <rect key="frame" x="247" y="8" width="60" height="30"/>
                                                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="gXx-NO-4Cc"/>
@@ -320,10 +320,10 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="August 2nd 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-iM-CKf">
-                                                            <rect key="frame" x="77" y="14" width="130" height="21"/>
+                                                            <rect key="frame" x="77" y="14" width="140" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="GCJ-1L-8MC"/>
-                                                                <constraint firstAttribute="width" constant="130" id="QLi-po-682"/>
+                                                                <constraint firstAttribute="width" constant="140" id="QLi-po-682"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.66666666669999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -350,7 +350,7 @@
                                                         <constraint firstItem="9to-aL-HXx" firstAttribute="centerY" secondItem="vyF-fR-9Wg" secondAttribute="centerY" id="U3j-YH-Vwy"/>
                                                         <constraint firstAttribute="height" constant="45" id="U8A-eA-1GQ"/>
                                                         <constraint firstItem="9to-aL-HXx" firstAttribute="leading" secondItem="YEJ-1K-BfT" secondAttribute="leadingMargin" constant="10" id="Z6m-58-TDW"/>
-                                                        <constraint firstItem="vyF-fR-9Wg" firstAttribute="leading" secondItem="OVy-iM-CKf" secondAttribute="trailing" constant="25" id="i3n-c5-egD"/>
+                                                        <constraint firstItem="vyF-fR-9Wg" firstAttribute="leading" secondItem="OVy-iM-CKf" secondAttribute="trailing" constant="30" id="i3n-c5-egD"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

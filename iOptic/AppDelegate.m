@@ -19,8 +19,8 @@
 #define FB_ID com.googleusercontent.apps.132862184286-arlft1df9f5sqld5jrdoote1m6ce1pld
 
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<SwiftyOnboardVCDelegate>
+@property(nonatomic) NSInteger currentOnBoardVCIndex;
 @end
 
 @implementation AppDelegate
@@ -60,6 +60,7 @@
     _walkthough = [[SwiftyOnboardVC alloc] init];
     _walkthough.hideStatusBar = YES;
     _walkthough.showPageControl = YES;
+    _walkthough.delegate = self;
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -250,11 +251,14 @@ didSignInForUser:(GIDGoogleUser *)user
 {
     UIStoryboard *onBoardStoryBoard = [UIStoryboard storyboardWithName:@"OnBoard" bundle:nil];
     FirstOnBoardViewController *firstViewController = [onBoardStoryBoard instantiateViewControllerWithIdentifier:@"FirstOnBoardScene"];
+    [firstViewController playAnimation];
     
     SecondOnBoardViewController *secondViewController = [onBoardStoryBoard instantiateViewControllerWithIdentifier:@"SeondOnBoardScene"];
-    
+    [secondViewController playAnimation];
+
     ThirdOnBoardViewController *thirdViewController = [onBoardStoryBoard instantiateViewControllerWithIdentifier:@"ThirdOnBoardScene"];
-    
+    [thirdViewController playAnimation];
+
     _walkthough.viewControllers = @[firstViewController,secondViewController,thirdViewController];
     self.window.backgroundColor = [UIColor greenColor];
     
@@ -263,6 +267,19 @@ didSignInForUser:(GIDGoogleUser *)user
     _walkthough.showRightButton = NO;
     _walkthough.showHorizontalScrollIndicator = YES;
     self.window.rootViewController = _walkthough;
+    self.currentOnBoardVCIndex = 0;
+}
+
+
+- (void)pageDidChangeWithCurrentPage:(NSInteger)currentPage
+{
+    NSInteger vcIndex = currentPage-1;
+    if(self.currentOnBoardVCIndex != vcIndex)
+    {
+        id<OnBoardPlayAnimation> vc = _walkthough.viewControllers[vcIndex];
+        [vc playAnimation];
+        self.currentOnBoardVCIndex = vcIndex;
+    }
 }
 
 
