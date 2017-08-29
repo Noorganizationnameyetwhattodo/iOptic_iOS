@@ -106,7 +106,7 @@
         }
     
     NSArray *specialGlasses = [currentPrescriptionDict valueForKey:@"specialGlass"];
-    int count = specialGlasses.count;
+    UInt8 count = specialGlasses.count;
     if ([currentPrescriptionDict valueForKey:@"specialGlass"]){
         if ([[currentPrescriptionDict valueForKey:@"specialGlass"] objectAtIndex:0]){
             [self.firstNote setHidden:NO];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -207,6 +207,16 @@
                     <constraint firstItem="wsC-nR-ry1" firstAttribute="leading" secondItem="1cp-W8-rkF" secondAttribute="leadingMargin" constant="7" id="yad-kG-fAh"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="UVBtn" destination="vNP-Ug-3Lq" id="Yxv-eB-4Si"/>
+                <outlet property="antireflctBtn" destination="wsC-nR-ry1" id="i2f-Wc-drb"/>
+                <outlet property="brownBtn" destination="izw-H2-IN0" id="PKd-am-llZ"/>
+                <outlet property="chromicBtn" destination="hk3-Sf-uxH" id="IyZ-AS-fHa"/>
+                <outlet property="highIndexBtn" destination="POc-Ch-EGO" id="X1W-fY-HwC"/>
+                <outlet property="polyBtn" destination="U2p-29-Dw9" id="RVO-Xz-oA2"/>
+                <outlet property="scratchBtn" destination="NNW-2U-JCs" id="cex-a5-bJ0"/>
+                <outlet property="singleBtn" destination="J1F-Qf-zm0" id="y6X-18-BC3"/>
+            </connections>
             <point key="canvasLocation" x="34" y="67"/>
         </tableViewCell>
     </objects>
