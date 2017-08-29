@@ -37,7 +37,7 @@
 -(void)updateDetails:(NSDictionary*)prescriptionDetails
 {
     
-    self.lensTypeLbl.text = [prescriptionDetails valueForKey:@"Type"];
+    self.lensTypeLbl.text = [prescriptionDetails valueForKey:@"contactType"];
     if ([prescriptionDetails valueForKey:@"power"]){
         self.powerLeft.text = [[prescriptionDetails valueForKey:@"power"] valueForKey:@"os"];
         self.powerRight.text = [[prescriptionDetails valueForKey:@"power"] valueForKey:@"od"];
@@ -68,6 +68,22 @@
     }else{
         self.cylinderRight.text = @"-";
         self.cylinderLeft.text = @"-";
+    }
+    
+    if ([prescriptionDetails valueForKey:@"add"]){
+        if ([[prescriptionDetails valueForKey:@"add"] valueForKey:@"od"]){
+            self.addRightLbl.text = [[prescriptionDetails valueForKey:@"add"] valueForKey:@"od"];
+        }else{
+            self.addRightLbl.text = @"-";
+        }
+        if ([[prescriptionDetails valueForKey:@"add"] valueForKey:@"os"]){
+            self.addLeftLbl.text = [[prescriptionDetails valueForKey:@"add"] valueForKey:@"os"];
+        }else{
+            self.addLeftLbl.text = @"-";
+        }
+    }else{
+        self.addLeftLbl.text = @"-";
+        self.addRightLbl.text = @"-";
     }
     
 }

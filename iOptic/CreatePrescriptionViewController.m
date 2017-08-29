@@ -49,7 +49,7 @@
 #define PRISM_LEFT 333
 
 
-@interface CreatePrescriptionViewController ()<PickerViewControllerDelegate,PrismValuesTableViewCellDelegate,PupillaryTableViewCellDelegate,ContactLensPrescriptionTableViewCellDelegate,PrescriptionTypeTableViewCellDelegate,LensPowerTableViewCellDelegate,LensTypeTableViewCellDelegate,LensAxisTableViewCellDelegate,NotesTableViewCellDelegate,UITextFieldDelegate,DatePickerViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CreatePrescriptionViewController ()<PickerViewControllerDelegate,PrismValuesTableViewCellDelegate,PupillaryTableViewCellDelegate,ContactLensPrescriptionTableViewCellDelegate,PrescriptionTypeTableViewCellDelegate,LensPowerTableViewCellDelegate,LensTypeTableViewCellDelegate,LensAxisTableViewCellDelegate,NotesTableViewCellDelegate,UITextFieldDelegate,UIScrollViewDelegate,DatePickerViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 @property(nonatomic) PickerViewController *pickerViewController;
 @property(nonatomic) DatePickerViewController *datePickerViewController;
@@ -663,7 +663,40 @@
         LensTypeTableViewCell *cell = (LensTypeTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"LensTypeTableViewCell" forIndexPath:indexPath];
         if (self.editableDetails){
             if ([self.regularLensDetails objectForKey:@"specialGlass"]){
-                
+                NSLog(@"SG::%@",[self.regularLensDetails objectForKey:@"specialGlass"]);
+                NSArray *specialGlasses = [self.regularLensDetails objectForKey:@"specialGlass"];
+                if ([specialGlasses containsObject:@"photo brown"]){
+                    [cell.brownBtn setSelected:YES];
+                    [cell.brownBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"polycarbonite"]){
+                    [cell.polyBtn setSelected:YES];
+                    [cell.polyBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"single vision"]){
+                    [cell.singleBtn setSelected:YES];
+                    [cell.singleBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"anti reflective"]){
+                    [cell.antireflctBtn setSelected:YES];
+                    [cell.antireflctBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"high index plastic"]){
+                    [cell.highIndexBtn setSelected:YES];
+                    [cell.highIndexBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"scratch resistant"]){
+                    [cell.scratchBtn setSelected:YES];
+                    [cell.scratchBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"photo chromic"]){
+                    [cell.chromicBtn setSelected:YES];
+                    [cell.chromicBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
+                if ([specialGlasses containsObject:@"uv protection"]){
+                    [cell.UVBtn setSelected:YES];
+                    [cell.UVBtn setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+                }
             }
         }
         
@@ -713,6 +746,8 @@
         [newDict addEntriesFromDictionary:oldDict];
         [newDict setValue:notesText forKey:@"notes"];
         [self.neededConfiguration setValue:newDict forKey:@"prescriptionInfo"];
+        [self.editableDetails setValue:newDict forKey:@"prescriptionInfo"];
+        self.personalDetails = newDict;
     }else{
         [[self.neededConfiguration objectForKey:@"prescriptionInfo"] setObject:notesText forKey:@"notes"];
 
@@ -724,7 +759,11 @@
     [self showDatePicker:sender];
 }
 
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder
+{
+    [self removePickerView];
+    [self removeDatePickerView];
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -778,6 +817,7 @@
         if (type == SINGLE_PD_SELECTED){
             self.isSinglePDSelected = !self.isSinglePDSelected;
             self.isDualPDSelected = NO;
+            [self.regularLensDetails removeObjectForKey:@"pd"];
             [self.regularLensDetails setValue:[NSNumber numberWithBool:false] forKey:@"isDualPd"];
             NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
             [self reloadTableAtIndexPath:indexPath completionHandler:^(BOOL success) {
@@ -786,12 +826,16 @@
         }else if (type == DUAL_PD_SELECTED){
             self.isDualPDSelected = !self.isDualPDSelected;
             [self.regularLensDetails setValue:[NSNumber numberWithBool:self.isDualPDSelected] forKey:@"isDualPd"];
+            [self.regularLensDetails removeObjectForKey:@"pd"];
+
             self.isSinglePDSelected = NO;
             NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
             [self reloadTableAtIndexPath:indexPath completionHandler:^(BOOL success) {
                 
             }];
         }else{
+            [self.regularLensDetails removeObjectForKey:@"dualPd"];
+            [self.regularLensDetails removeObjectForKey:@"singlePd"];
             self.isSinglePDSelected = NO;
             self.isDualPDSelected = NO;
             [self.regularLensDetails setValue:[NSNumber numberWithBool:false] forKey:@"isDualPd"];
@@ -1325,6 +1369,9 @@
         }
         else if(btn.tag == PRESCRIPTION_TYPE)
         {
+            if ([item isEqualToString:@"Distance Lenses"]|| [item isEqualToString:@"Reading Lenses"]){
+                self.isDistanceLensSelected = YES;
+            }
             [self.regularLensDetails setValue:item forKey:@"type"];
             
         }
@@ -1819,18 +1866,28 @@
 
 -(void)selectedSpecialGlass:(NSString*)selected
 {
-    if ([self.regularLensDetails objectForKey:@"specialGlass"]){
-        NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
-        [tempArray addObject:selected];
-//        NSMutableArray *specialGlasses = [NSMutableArray arrayWithArray:[self.regularLensDetails objectForKey:@"specialGlass"]];
-       // [specialGlasses addObject:selected];
-        [self.regularLensDetails setObject:tempArray forKey:@"specialGlass"];
+    if(self.editableDetails){
+        if ([[self.editableDetails valueForKey:@"prescriptionGlasses"] objectForKey:@"specialGlass"]){
+            NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
+            NSMutableArray *newArray = [NSMutableArray arrayWithArray:tempArray];
+            [newArray addObject:selected];
+//            [[self.editableDetails valueForKey:@"prescriptionGlasses"] setObject:newArray forKey:@"specialGlass"];
+            [self.regularLensDetails setObject:newArray forKey:@"specialGlass"];
+        }
     }else{
-        NSMutableArray *specialGlasses = [[NSMutableArray alloc] init];
-        [specialGlasses addObject:selected];
-        [self.regularLensDetails setObject:specialGlasses forKey:@"specialGlass"];
+        
+        if ([self.regularLensDetails objectForKey:@"specialGlass"]){
+            NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
+            [tempArray addObject:selected];
+            //        NSMutableArray *specialGlasses = [NSMutableArray arrayWithArray:[self.regularLensDetails objectForKey:@"specialGlass"]];
+            // [specialGlasses addObject:selected];
+            [self.regularLensDetails setObject:tempArray forKey:@"specialGlass"];
+        }else{
+            NSMutableArray *specialGlasses = [[NSMutableArray alloc] init];
+            [specialGlasses addObject:selected];
+            [self.regularLensDetails setObject:specialGlasses forKey:@"specialGlass"];
+        }
     }
-    
 }
 -(void)deSelectedSpecialGlass:(NSString*)deSelected
 {
@@ -1981,19 +2038,19 @@
         }
         if (![[[self.contactLensDetails valueForKey:@"power"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"power"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your POWER prescription"];
+            [self showPopupWithContent:@"complete your power prescription"];
             return;
         }
         
         if (![[[self.contactLensDetails valueForKey:@"bc"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"bc"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your BC prescription"];
+            [self showPopupWithContent:@"complete your bc prescription"];
             return;
         }
         
         if (![[[self.contactLensDetails valueForKey:@"dia"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"dia"] valueForKey:@"od"] length])
         {
-            [self showPopupWithContent:@"Complete your DIA prescription"];
+            [self showPopupWithContent:@"complete your dia prescription"];
             return;
         }
         if ([[self.contactLensDetails objectForKey:@"contactType"] isEqualToString:@"Bifocal Contacts"])
@@ -2008,12 +2065,12 @@
         {
             if (![[[self.contactLensDetails valueForKey:@"cylinder"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"cylinder"] valueForKey:@"od"] length])
             {
-                [self showPopupWithContent:@"select Cylinder lens type"];
+                [self showPopupWithContent:@"select cylinder lens type"];
                 return;
             }
-            if (![[[self.contactLensDetails valueForKey:@"axis"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"axis"] valueForKey:@"os"] length])
+            if (![[[self.contactLensDetails valueForKey:@"axis"] valueForKey:@"os"] length]||![[[self.contactLensDetails valueForKey:@"axis"] valueForKey:@"od"] length])
             {
-                [self showPopupWithContent:@"select Axis lens type"];
+                [self showPopupWithContent:@"select axis lens type"];
                 return;
             }
         }
@@ -2043,11 +2100,12 @@
             [self showPopupWithContent:@"Complete your Add prescription"];
             return;
         }
-        else if(self.prismSelectionType == NONE && !self.isDistanceLensSelected)
-        {
-            [self showPopupWithContent:@"select Prism value"];
-            return;
-        }else if(!self.isSinglePDSelected && !self.isDualPDSelected)
+//        else if(self.prismSelectionType == NONE && !self.isDistanceLensSelected )
+//        {
+//            [self showPopupWithContent:@"select Prism value"];
+//            return;
+//        }
+        else if(!self.isSinglePDSelected && !self.isDualPDSelected)
         {
             [self showPopupWithContent:@"select Pupillary value"];
             return;
@@ -2128,13 +2186,34 @@
     if(textField.tag == NAME_TAG)//name
     {
         self.prescription.name = textField.text;
-        [self.personalDetails setValue:textField.text forKey:@"name"];
-        
+        if (self.editableDetails){
+            NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary *oldDict = [self.editableDetails valueForKey:@"prescriptionInfo"];
+            [newDict addEntriesFromDictionary:oldDict];
+            [newDict setValue:textField.text forKey:@"name"];
+            [self.neededConfiguration setValue:newDict forKey:@"prescriptionInfo"];
+            [self.editableDetails setValue:newDict forKey:@"prescriptionInfo"];
+            self.personalDetails = newDict;
+        }else{
+            [self.personalDetails setValue:textField.text forKey:@"name"];
+            [[self.neededConfiguration objectForKey:@"prescriptionInfo"] setObject:textField.text forKey:@"name"];
+        }
     }
     else if(textField.tag == 2)//doctor name
     {
         self.prescription.doctorName = textField.text;
-        [self.personalDetails setValue:textField.text forKey:@"doctorName"];
+        if (self.editableDetails){
+            NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary *oldDict = [self.editableDetails valueForKey:@"prescriptionInfo"];
+            [newDict addEntriesFromDictionary:oldDict];
+            [newDict setValue:textField.text forKey:@"doctorName"];
+            [self.editableDetails setValue:newDict forKey:@"prescriptionInfo"];
+            [self.neededConfiguration setValue:newDict forKey:@"prescriptionInfo"];
+            self.personalDetails = newDict;
+        }else{
+            [self.personalDetails setValue:textField.text forKey:@"doctorName"];
+            [[self.neededConfiguration objectForKey:@"prescriptionInfo"] setObject:textField.text forKey:@"doctorName"];
+        }
     }
 }
 
@@ -2144,7 +2223,6 @@
     [self contactLensTypePickerTapped:sender];
     if (btn.tag == 55)
     {
-        self.isDistanceLensSelected = YES;
         [self prescriptionTypePickerTapped:sender];
     }
 }
@@ -2299,6 +2377,12 @@
 -(void)pupillaryHelpTapped:(id)sender
 {
     [self showPopupWithContent:@"PD is the distnace between your pupils. Usually, it ranges from 57 to 65 mm. Its is highly recommended to get your PD from your optometrist if you have a high power or if you are going to order bifocal, progressive or computer lenses."];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;                                               // any offset changes
+{
+    [self removePickerView];
+    [self removeDatePickerView];
 }
 
 

@@ -33,5 +33,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *cylinderLeft;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *addRightLbl;
+
+@property (weak, nonatomic) IBOutlet UILabel *addLeftLbl;
+
+
+
+
 -(void)updateDetails:(NSDictionary*)prescriptionDetails;
 @end
