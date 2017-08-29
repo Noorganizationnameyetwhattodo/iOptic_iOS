@@ -30,10 +30,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailField.placeholder = "enter your email address"
-        passwordField.placeholder = "enter your password"
+        emailField.placeholder = "Email Address"
+        passwordField.placeholder = "Password"
 
-        //google sign in button
+       /* //google sign in button
         let googleSignButton = GIDSignInButton()
         googleSignButton.frame = CGRect(x: 16 , y: 180, width: view.frame.width-32, height: 40)
         view.addSubview(googleSignButton)
@@ -45,18 +45,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         loginButton.frame = CGRect(x: 16 , y: 250, width: view.frame.width-36, height: 45)
         view.addSubview(loginButton)
         
-        loginButton.delegate = self
+        loginButton.delegate = self*/
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let firebaseAuth = Auth.auth()
-        if firebaseAuth.currentUser != nil {
-            let firebaseUser:User = firebaseAuth.currentUser!
-            
-            showMessagePrompt(title: "Success", message: "Welcome \(firebaseUser.displayName ?? "to iOptic")")
-        }
     }
     
     
@@ -106,23 +100,60 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     @IBAction func didSigninAccount(_ sender: Any) {
         if let email = self.emailField.text, let password = self.passwordField.text {
             
+            self.showSpinner {
+
                 // [START headless_email_auth]
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if let error = error {
-                        self.showMessagePrompt(title: "error",message:error.localizedDescription)
-                        return
+                        self.hideSpinner {
+                            self.showMessagePrompt(error.localizedDescription)
+                            return
+                        }
                     }
-                    
                     if let user = user {
-                        // The user's ID, unique to the Firebase project.
-                        // Do NOT use this value to authenticate with your backend server,
-                        // if you have one. Use getTokenWithCompletion:completion: instead.
-                        let uid = user.uid
-                        let email = user.email
-                        let photoURL = user.photoURL
-                        print("user id: \(uid) user email: \(String(describing: email)) user photourl: \(String(describing: photoURL))")
+                        
+                        self.hideSpinner {
+                            
+                            if user.isEmailVerified == false {
+                                
+                                let msg = "Please verify your email address and login again. Click Resend if you missed it."
+                                let buttonTitles = ["OK","RESEND"]
+                                self.showMessagePrompt(msg, withTitle:"Verify Email Address", withButtonTitles:buttonTitles){(index) in
+                                    if index == 0
+                                    {
+                                        
+                                    }
+                                    else
+                                    {
+                                        Auth.auth().currentUser?.sendEmailVerification{ (error) in
+                                            
+                                            if let error = error {
+                                                self.showMessagePrompt(error.localizedDescription)
+                                                return
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                let uid = user.uid
+                                let email = user.email
+                                let photoURL = user.photoURL
+                                print("user id: \(uid) user email: \(String(describing: email)) user photourl: \(String(describing: photoURL))")
+                                
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.goToMainViewController()
+                            }
+
+                        }
+
+                        
                     }
                 }
+            }
                 // [END headless_email_auth]
             
         } else {
@@ -161,5 +192,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         appDelegate.goToMainViewController()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+
 }
 

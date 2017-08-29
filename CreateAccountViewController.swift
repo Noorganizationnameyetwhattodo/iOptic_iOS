@@ -26,10 +26,10 @@ class CreateAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //load placeholders.
-        txtName.placeholder = "your name"
-        txtEmailAddress.placeholder = "enter your email address"
-        txtPassword.placeholder = "enter your password"
-        txtConfirmPwd.placeholder =  "confirm password"
+        txtName.placeholder = "Name"
+        txtEmailAddress.placeholder = "Email Address"
+        txtPassword.placeholder = "Password"
+        txtConfirmPwd.placeholder =  "Confirm password"
         
     }
     
@@ -77,17 +77,46 @@ class CreateAccountViewController: UIViewController {
         
         if validateForm(){
         if let email = self.txtEmailAddress.text, let password = self.txtPassword.text {
-            // [START create_user]
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                
-                    if let error = error {
-                        self.showMessagePrompt(title: "error", message: error.localizedDescription)
-                        return
-                    }
-                    print("\(user!.email!) created")
-            }
-            // [END create_user]
             
+            self.showSpinner {
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    
+                    if let error = error {
+                        self.hideSpinner {
+                            self.showMessagePrompt(error.localizedDescription)
+                            return
+                        }
+                    }
+                    else
+                    {
+                            print("\(user!.email!) created")
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                            changeRequest?.displayName = self.txtName.text
+                            changeRequest?.commitChanges { (error) in
+                                Auth.auth().currentUser?.sendEmailVerification{ (error) in
+                                    
+                                    self.hideSpinner {
+                                        
+                                        if let error = error {
+                                            self.showMessagePrompt(error.localizedDescription)
+                                            return
+                                        }
+                                        
+                                        let msg = "We have sent verification email to \(email). Please verify and login"
+                                        self.showMessagePrompt(msg, withTitle:"Verify Email Address"){_,_ in
+                                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                            appDelegate.goToMainViewController()
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+
+                        }
+                    }
+                }
             }
         }
     }
@@ -99,8 +128,8 @@ class CreateAccountViewController: UIViewController {
         //should have a valid name
         let nameCount = (txtName.text?.characters.count)! > 0
         if nameCount == false {
-            return false
             showMessagePrompt(title: "Error", message: "Please fill your name.")
+            return false
         }
         
         //check if email address is valid
@@ -128,15 +157,10 @@ class CreateAccountViewController: UIViewController {
         return emailTest.evaluate(with: testStr)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-
     
 }

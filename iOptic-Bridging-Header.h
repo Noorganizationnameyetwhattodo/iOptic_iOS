@@ -6,3 +6,4 @@
 
 #import "AppDelegate.h"
 #import "UIImage+animatedGIF.h"
+#import "UIViewController+Alerts.h"

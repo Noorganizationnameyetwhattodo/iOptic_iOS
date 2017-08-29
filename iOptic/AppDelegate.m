@@ -27,11 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSLog(@"bundleId:%@",[[NSBundle mainBundle] bundleIdentifier]);
     
-    if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"isTutorialShown"] boolValue]){
-        [self performSelectorInBackground:@selector(formGIFsInBackground) withObject:nil];
-    }
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -201,50 +197,24 @@ didSignInForUser:(GIDGoogleUser *)user
 
 
 
--(void)formGIFsInBackground
-{
-    self.firstGIF = [[NSMutableArray alloc] init];
 
-    for (int i=1; i <= 45; i++) {
-        @autoreleasepool {
-            NSString *imgName = [NSString stringWithFormat:@"1_%d", i];
-            UIImage *image = [UIImage imageNamed:imgName];
-            [self.firstGIF addObject:image];
-        }
-    }
-    
-    self.secondGIF = [[NSMutableArray alloc] init];
-    
-    for (int i=1; i <= 120; i++) {
-        @autoreleasepool {
-            NSString *imgName = [NSString stringWithFormat:@"2_%d", i];
-            UIImage *image = [UIImage imageNamed:imgName];
-            [self.secondGIF addObject:image];
-        }
-    }
-    
-    self.thirdGIF = [[NSMutableArray alloc] init];
-    
-    for (int i=1; i <= 150; i++) {
-        @autoreleasepool {
-            NSString *imgName = [NSString stringWithFormat:@"3_%d", i];
-            UIImage *image = [UIImage imageNamed:imgName];
-            [self.thirdGIF addObject:image];
-        }
-    }
-    
-   
-}
 
 -(void)continueWithLaunch
 {
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isTutorialShown"] boolValue]){
-        [self showLoginScreen];
+        
+        FIRUser *user = [FIRAuth auth].currentUser;
+        if(user.isEmailVerified)
+        {
+            [self goToMainViewController];
+        }
+        else
+        {
+            [self showLoginScreen];
+        }
     }else{
         [self showTutorial];
     }
-    
-    
 }
 
 -(void)showTutorial
@@ -288,7 +258,6 @@ didSignInForUser:(GIDGoogleUser *)user
     UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     LoginViewController *loginViewController = [loginStoryboard instantiateInitialViewController];
     self.window.rootViewController = loginViewController;
-
 }
 
 
