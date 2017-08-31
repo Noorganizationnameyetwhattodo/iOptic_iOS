@@ -209,13 +209,16 @@ didDisconnectWithUser:(GIDGoogleUser *)user
         BOOL emailVerified = NO;
         NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
         NSString *loginType = [userdefaults objectForKey:@"loginType"];
-        if([loginType isEqualToString:@"email"])
+        if(user)
         {
-            emailVerified = user.isEmailVerified;
-        }
-        else
-        {
-            emailVerified = YES;
+            if([loginType isEqualToString:@"email"])
+            {
+                emailVerified = user.isEmailVerified;
+            }
+            else
+            {
+                emailVerified = YES;
+            }
         }
 
         if(emailVerified)
