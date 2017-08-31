@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     @IBOutlet weak var btnForgot: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnCreateAccnt: UIButton!
-    @IBOutlet weak var gSign: GIDSignInButton!
+
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -32,22 +32,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         
         emailField.placeholder = "Email Address"
         passwordField.placeholder = "Password"
-
-       /* //google sign in button
-        let googleSignButton = GIDSignInButton()
-        googleSignButton.frame = CGRect(x: 16 , y: 180, width: view.frame.width-32, height: 40)
-        view.addSubview(googleSignButton)
+        
         
         GIDSignIn.sharedInstance().uiDelegate = self
-        
-        //facebook related code
-        let loginButton = FBSDKLoginButton()
-        loginButton.frame = CGRect(x: 16 , y: 250, width: view.frame.width-36, height: 45)
-        view.addSubview(loginButton)
-        
-        loginButton.delegate = self*/
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,19 +46,32 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "BTN_CLICK_FACEBOOK_LOGIN" as NSObject,
+            AnalyticsParameterItemName: "FACEBOOK LOGIN" as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+        
         if error != nil {
-            print(error.localizedDescription)
+            showMessagePrompt(error.localizedDescription)
         }
-        print("successfully logged in ")
-        showMessagePrompt(title: "Success", message: "succesfully logged in with facebook.")
-        return
+        else
+        {
+            if result.isCancelled
+            {
+                showMessagePrompt("The user canceled the sign-in flow.")
+            }
+            else
+            {
+                UserDefaults.standard.set("fb", forKey: "loginType")
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                self.firebaseLogin(credential)
+                //showMessagePrompt(title: "Success", message: "succesfully logged in with facebook.")
+            }
+        }
     }
     
-    
-    
-    @IBAction func signInWithGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance().signIn()
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,25 +79,25 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // [START auth_listener]
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // [START_EXCLUDE]
-//            self.setTitleDisplay(user)
-//            self.tableView.reloadData()
-            // [END_EXCLUDE]
             
         }
-        // [END auth_listener]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // [START remove_auth_listener]
         Auth.auth().removeStateDidChangeListener(handle!)
-        // [END remove_auth_listener]
     }
     
     @IBAction func didSigninAccount(_ sender: Any) {
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "BTN_CLICK_LOGIN" as NSObject,
+            AnalyticsParameterItemName: "LOGIN" as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+
+        
         if let email = self.emailField.text, let password = self.passwordField.text {
             
             self.showSpinner {
@@ -139,6 +139,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                             }
                             else
                             {
+                                UserDefaults.standard.set("email", forKey: "loginType")
                                 let uid = user.uid
                                 let email = user.email
                                 let photoURL = user.photoURL
@@ -173,21 +174,50 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         
     }
     
-    func verifyEmailAddress(){
-        Auth.auth().currentUser?.sendEmailVerification { (error) in
-            if let error = error {
-                self.showMessagePrompt(title: "error",message:error.localizedDescription)
-                return
+    func firebaseLogin(_ credential: AuthCredential) {
+        showSpinner {
+            if let user = Auth.auth().currentUser {
+                user.link(with: credential) { (user, error) in
+                    self.hideSpinner {
+                        if let error = error {
+                            self.showMessagePrompt(error.localizedDescription)
+                            return
+                        }
+                        else
+                        {
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.goToMainViewController()
+                        }
+                    }
+                }
+            } else {
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    self.hideSpinner {
+                        if let error = error {
+                            self.showMessagePrompt(error.localizedDescription)
+                            return
+                        }
+                        else
+                        {
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.goToMainViewController()
+                        }
+                    }
+                }
             }
-            
-            let user = Auth.auth().currentUser
-            self.showMessagePrompt(title: "Verification Email", message: "iOptic has sent an verification email to \(String(describing: user?.email))")
-
         }
+
     }
-    
+
     
     @IBAction func skipTapped(_ sender: Any) {
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "BTN_CLICK_SKIP_LOGIN" as NSObject,
+            AnalyticsParameterItemName: "Skip Login " as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.goToMainViewController()
     }
@@ -196,6 +226,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func keepSignInTapped(_ sender: Any) {
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "CHKBX_REMEMBER_ME" as NSObject,
+            AnalyticsParameterItemName: "REMEMBER ME" as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+
+        let switchButton:UISwitch = sender as! UISwitch
+        UserDefaults.standard.set(switchButton.isOn, forKey: "keepSignIn")
     }
 
 }

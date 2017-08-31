@@ -8,8 +8,11 @@ target 'iOptic' do
   # Pods for iOptic
   
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 
 

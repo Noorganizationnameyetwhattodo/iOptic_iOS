@@ -661,6 +661,7 @@
 				B140F93C1ED3C1B40063D09C /* Resources */,
 				93BD9501CD0F34E975669B97 /* [CP] Embed Pods Frameworks */,
 				16DAF18A90C465824A9AA220 /* [CP] Copy Pods Resources */,
+				B1F81F041F56AFC800AB8E55 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -774,7 +775,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		16DAF18A90C465824A9AA220 /* [CP] Copy Pods Resources */ = {
@@ -806,6 +807,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOptic/Pods-iOptic-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B1F81F041F56AFC800AB8E55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 05597054716e938318a5d8ad5d6aa649cbd7e4aa a43991034164ff077b1edf2be47768ef5e07cc0777537f37f9c0c6a1809f7994";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DB45E81DECFD78C3F5956E4E173F2509"
+               BlueprintIdentifier = "F085EF99EA21A1AE26CEF5D77E0A130B"
                BuildableName = "Pods_iOptic.framework"
                BlueprintName = "Pods-iOptic"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DB45E81DECFD78C3F5956E4E173F2509"
+            BlueprintIdentifier = "F085EF99EA21A1AE26CEF5D77E0A130B"
             BuildableName = "Pods_iOptic.framework"
             BlueprintName = "Pods-iOptic"
             ReferencedContainer = "container:Pods.xcodeproj">

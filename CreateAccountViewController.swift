@@ -31,6 +31,13 @@ class CreateAccountViewController: UIViewController {
         txtPassword.placeholder = "Password"
         txtConfirmPwd.placeholder =  "Confirm password"
         
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "BTN_CLICK_CREATE_ACCOUNT" as NSObject,
+            AnalyticsParameterItemName: "Create account" as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+
+        
     }
     
 

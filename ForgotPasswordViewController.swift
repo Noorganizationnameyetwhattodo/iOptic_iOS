@@ -18,7 +18,14 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtEmail.placeholder = "email address"
+        txtEmail.placeholder = "Email Address"
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "BTN_CLICK_FORGOT_PWD" as NSObject,
+            AnalyticsParameterItemName: "Forgot Password" as NSObject,
+            AnalyticsParameterContentType: "text" as NSObject
+            ])
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,48 +36,76 @@ class ForgotPasswordViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // [START auth_listener]
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // [START_EXCLUDE]
-            //            self.setTitleDisplay(user)
-            //            self.tableView.reloadData()
-            // [END_EXCLUDE]
-            
         }
-        // [END auth_listener]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // [START remove_auth_listener]
         Auth.auth().removeStateDidChangeListener(handle!)
-        // [END remove_auth_listener]
     }
+    
+    @IBAction func closeTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     
     @IBAction func btnForgot(_ sender: Any) {
         
-        Auth.auth().sendPasswordReset(withEmail: txtEmail.text!) { (error) in
-            if let error = error {
-                self.showMessagePrompt(title: "error", message: error.localizedDescription)
-                return
-            }
+        if validateForm(){
             
-            self.showMessagePrompt(title: "email sent!", message: "iOptic has sent a reset password link your email. Please update your password and login.")
+            self.showSpinner {
+
+            Auth.auth().sendPasswordReset(withEmail: self.txtEmail.text!) { (error) in
+                
+                self.hideSpinner {
+
+                        if let error = error {
+                            self.showMessagePrompt(error.localizedDescription)
+                            return
+                        }
+                        else
+                        {
+                            let msg = "We have sent an email with a password change link. Change your password and log back in."
+                            self.showMessagePrompt(msg, withTitle:"Change Password"){_,_ in
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.showLoginScreen()
+                            }
+                        }
+
+                    }
+                }
+            }
+
         }
-        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
     
     
-    func showMessagePrompt(title: String,message:String){
-        // create the alert
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    //validate the user input form
+    func validateForm() -> Bool{
         
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        //check if email address is valid
+        let isEmailValid = isValidEmail(testStr: (txtEmail.text)!)
+        if isEmailValid == false {
+            self.showMessagePrompt("Please enter a valid email addresss.")
+            return false
+        }
+        return true
+    }
+
+
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
 
 

@@ -14,6 +14,7 @@
 #import "NotesTableViewCell.h"
 #import "QRCodeTableViewCelTableViewCell.h"
 #import "UIImage+MDQRCode.h"
+@import Firebase;
 
 @interface PrescriptonDetailViewController ()
 @property(nonatomic) NSUInteger numberOfSections;
@@ -93,6 +94,13 @@
 }
 
 -(void)deleteThePrescription{
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_DELETE_PRESP",
+                                     kFIRParameterItemName:@"Delete Prescription",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
     NSMutableArray *prescriptions = [[NSUserDefaults standardUserDefaults] objectForKey:@"prescriptions"];
     NSMutableArray *tempArray = [NSMutableArray arrayWithArray:prescriptions];
     if (prescriptions != nil)
@@ -136,6 +144,14 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationController"];
+    
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_EDIT_PRESP",
+                                     kFIRParameterItemName:@"Edit Prescription",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
     
     CreatePrescriptionViewController *viewcontroller =[storyboard instantiateViewControllerWithIdentifier:@"CreatePrescriptionViewController"];
     viewcontroller.selectedPrescriptionName = self.name;

@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "QRCodeReaderViewController.h"
 #import "QRCodeReader.h"
+@import Firebase;
 
 
 
@@ -165,6 +166,13 @@
 
 -(IBAction)addPrescriptionAction:(id)sender
 {
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_ADD_PRESP",
+                                     kFIRParameterItemName:@"Add Prescription",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationController"];
@@ -175,6 +183,15 @@
 }
 
 - (IBAction)CameraBtnPressed:(id)sender {
+    
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_QR",
+                                     kFIRParameterItemName:@"QR CLICKED",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
+    
     if ([QRCodeReader supportsMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]]) {
         static QRCodeReaderViewController *vc = nil;
         static dispatch_once_t onceToken;

@@ -12,12 +12,12 @@
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import "UIViewController+Alerts.h"
+
 @import Firebase;
 @import GoogleSignIn;
-
-#define GOOGLE_ID @"com.googleusercontent.apps.132862184286-arlft1df9f5sqld5jrdoote1m6ce1pld"
-#define FB_ID com.googleusercontent.apps.132862184286-arlft1df9f5sqld5jrdoote1m6ce1pld
-
 
 @interface AppDelegate ()<SwiftyOnboardVCDelegate>
 @property(nonatomic) NSInteger currentOnBoardVCIndex;
@@ -27,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    [Fabric with:@[[Crashlytics class]]];
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -44,14 +44,6 @@
                              didFinishLaunchingWithOptions:launchOptions];
     
     
-//    GIDSignIn.sharedInstance.clientID = FIRApp.op
-//    
-//    
-//    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-//    GIDSignIn.sharedInstance().delegate = self
-//    
-//    FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
     
     _walkthough = [[SwiftyOnboardVC alloc] init];
     _walkthough.hideStatusBar = YES;
@@ -134,33 +126,27 @@
 
 
 
-//- (BOOL)application:(UIApplication *)app
-//            openURL:(NSURL *)url
-//            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
-//{
-//    
-//    if ([url.scheme isEqualToString:GOOGLE_ID]){
-//        BOOL handled = [[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationLaunchOptionsSourceApplicationKey]
-//                                                  annotation:options[UIApplicationLaunchOptionsAnnotationKey]];
-//        
-//       return handled ;//
-//    }else{
-//       return [[FBSDKApplicationDelegate sharedInstance] application:app openURL:url sourceApplication:options[UIApplicationLaunchOptionsSourceApplicationKey]
-//                                                    annotation:options[UIApplicationLaunchOptionsAnnotationKey]];
-//    }
-//    
-//    
-//}
+- (BOOL)application:(nonnull UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<NSString *, id> *)options {
+    return [self application:application
+                     openURL:url
+           sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                  annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if ([url.scheme isEqualToString:GOOGLE_ID]){
-        BOOL handled = [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication
-                                                  annotation:annotation];
-        
-        return handled ;//
-    }else{
-        return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication                                                           annotation:annotation];
+    if ([[GIDSignIn sharedInstance] handleURL:url
+                            sourceApplication:sourceApplication
+                                   annotation:annotation]) {
+        return YES;
     }
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+
     
 }
 
@@ -168,33 +154,49 @@
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_GOOGLE_LOGIN",
+                                     kFIRParameterItemName:@"GOOGLE LOGIN",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
+    
+    LoginViewController *controller = (LoginViewController*) [GIDSignIn sharedInstance].uiDelegate;
+
     if (error != nil){
-        NSLog(@"error occured:%@",error);
+        [controller showMessagePrompt:error.localizedDescription];
     }
-    
-    if (user.authentication == nil){
-        return;
+    else
+    {
+        NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+        [userdefaults setObject:@"google" forKey:@"loginType"];
+        GIDAuthentication *authentication = user.authentication;
+        FIRAuthCredential *credential =
+        [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+                                         accessToken:authentication.accessToken];
+        
+        [controller firebaseLogin:credential];
+
     }
-    
-    GIDAuthentication *authentication = user.authentication;
-    FIRAuthCredential *credential =
-    [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                     accessToken:authentication.accessToken];
-    
-    
-    [[FIRAuth auth] signInWithCredential:credential
-                              completion:^(FIRUser *user, NSError *error) {
-                                  if (error) {
-                                      // ...
-                                      NSLog(@"error occured during google login:%@",error.localizedDescription);
-                                      return;
-                                  }
-                                  // User successfully signed in. Get user data from the FIRUser object
-                                  // ...
-                              }];
-    
 }
 
+
+
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    
+    LoginViewController *controller = (LoginViewController*) [GIDSignIn sharedInstance].uiDelegate;
+    
+    if (error != nil){
+        [controller showMessagePrompt:error.localizedDescription];
+    }
+
+    
+    // Perform any operations when the user disconnects from app here.
+    // ...
+}
 
 
 
@@ -204,7 +206,19 @@ didSignInForUser:(GIDGoogleUser *)user
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"isTutorialShown"] boolValue]){
         
         FIRUser *user = [FIRAuth auth].currentUser;
-        if(user.isEmailVerified)
+        BOOL emailVerified = NO;
+        NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+        NSString *loginType = [userdefaults objectForKey:@"loginType"];
+        if([loginType isEqualToString:@"email"])
+        {
+            emailVerified = user.isEmailVerified;
+        }
+        else
+        {
+            emailVerified = YES;
+        }
+
+        if(emailVerified)
         {
             [self goToMainViewController];
         }

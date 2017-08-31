@@ -10,6 +10,9 @@
 #import "MenuItem.h"
 #import "UIViewController+LGSideMenuController.h"
 #import "AppDelegate.h"
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
+@import Firebase;
 
 
 @import Firebase;
@@ -27,7 +30,24 @@
 - (void)reloadMenu
 {
     FIRUser *user = [FIRAuth auth].currentUser;
-    if(user.isEmailVerified)
+
+    BOOL emailVerified = NO;
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    NSString *loginType = [userdefaults objectForKey:@"loginType"];
+    
+    if(user)
+    {
+        if([loginType isEqualToString:@"email"])
+        {
+            emailVerified = user.isEmailVerified;
+        }
+        else
+        {
+            emailVerified = YES;
+        }
+    }
+
+    if(emailVerified)
     {
         self.emailIdLabel.text = user.email;
         self.displayNameLabel.text = user.displayName;
@@ -51,7 +71,7 @@
     menuItem.identifier = @"iOpticAboutViewController";
     [self.menuItemsList addObject:menuItem];
     
-    if(user.isEmailVerified)
+    if(user && emailVerified)
     {
         menuItem = [MenuItem new];
         menuItem.iconName = @"logout_icon";
@@ -121,14 +141,61 @@
     [sideMenuController hideLeftViewAnimated];
     
     NSString *identifier = self.menuItemsList[indexPath.row].identifier;
-    if([identifier isEqualToString:@"LoginViewController"])
+    
+    if([identifier isEqualToString:@"iOpticHomeViewController"])
     {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"NAV_BTN_CLICK_HOME",
+                                         kFIRParameterItemName:@"NAV MENU HOME",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
+    }
+    else if([identifier isEqualToString:@"iOpticAboutViewController"])
+    {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"NAV_BTN_CLICK_ABOUT",
+                                         kFIRParameterItemName:@"NAV MENU ABOUT",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
+    }
+    else if([identifier isEqualToString:@"LoginViewController"])
+    {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"NAV_BTN_CLICK_LOGIN",
+                                         kFIRParameterItemName:@"NAV MENU LOGIN",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
         AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [delegate showLoginScreen];
     }
     else if([identifier isEqualToString:@"LogoutViewController"])
     {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"NAV_BTN_CLICK_LOGOUT",
+                                         kFIRParameterItemName:@"NAV MENU LOGOUT",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
         [[FIRAuth auth] signOut:nil];
+        NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+        NSString *loginType = [userdefaults objectForKey:@"loginType"];
+        if([loginType isEqualToString:@"google"])
+        {
+            [[GIDSignIn sharedInstance] signOut];
+        }
+        else if([loginType isEqualToString:@"fb"])
+        {
+            FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+            [loginManager logOut];
+        }
+
         [self reloadMenu];
     }
 }

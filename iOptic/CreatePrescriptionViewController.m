@@ -24,6 +24,9 @@
 #import "iOptic-Swift.h"
 #import "UIView+Toast.h"
 
+@import Firebase;
+
+
 #define NAME_TAG 123456
 
 #define POWER_RIGHT 12
@@ -860,6 +863,13 @@
 
 -(IBAction)dismiss:(id)sender
 {
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"BTN_CLICK_CLOSE_PRESP",
+                                     kFIRParameterItemName:@"Close Prescription",
+                                     kFIRParameterContentType:@"text"
+                                     }];
+
     [self removePickerView];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -2171,6 +2181,28 @@
 
     NSLog(@"dictionary:%@",dictionary);
     [[PrescriptionManager shareInstance] addPrescription:self.prescription details:self.neededConfiguration oldName:self.oldName];
+    
+    if(self.editableDetails)
+    {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"BTN_CLICK_UPDATE_PRESP",
+                                         kFIRParameterItemName:@"Update Prescription",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
+    }
+    else
+    {
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+                                         kFIRParameterItemID:@"BTN_CLICK_SAVE_PRESP",
+                                         kFIRParameterItemName:@"Save Prescription",
+                                         kFIRParameterContentType:@"text"
+                                         }];
+
+    }
+    
     [self.view makeToast:@"Congratulations you have successfully created the prescription." duration:0.5 position:CSToastPositionBottom title:nil image:nil style:nil completion:^(BOOL didTap) {
         [self dismiss:nil];
 
