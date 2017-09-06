@@ -300,7 +300,7 @@
                                                     <rect key="frame" x="18" y="123" width="320" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyF-fR-9Wg">
-                                                            <rect key="frame" x="247" y="10" width="80" height="30"/>
+                                                            <rect key="frame" x="247" y="9.5" width="80" height="30"/>
                                                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="80" id="gXx-NO-4Cc"/>
@@ -331,7 +331,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9to-aL-HXx">
-                                                            <rect key="frame" x="18" y="15" width="42" height="21"/>
+                                                            <rect key="frame" x="18" y="14.5" width="42" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="Mp9-Ta-lzP"/>
                                                                 <constraint firstAttribute="width" constant="42" id="Pls-gh-Ect"/>

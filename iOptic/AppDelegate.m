@@ -15,6 +15,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UIViewController+Alerts.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @import Firebase;
 @import GoogleSignIn;
@@ -29,12 +30,15 @@
     
     [Fabric with:@[[Crashlytics class]]];
     
+
+    
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
     
-    
+    IQKeyboardManager.sharedManager.enable = YES;
+
     [FIRApp configure];
     
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;

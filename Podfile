@@ -13,6 +13,7 @@ target 'iOptic' do
   pod 'GoogleSignIn'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'IQKeyboardManager'
 
 
 

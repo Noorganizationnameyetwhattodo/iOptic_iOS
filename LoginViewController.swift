@@ -24,8 +24,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     @IBOutlet weak var btnCreateAccnt: UIButton!
 
     @IBOutlet weak var btnSkip: UIButton!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordField: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var loginView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

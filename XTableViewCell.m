@@ -83,8 +83,8 @@
     {
         self.prismBaseView.hidden = NO;
         if ([currentPrescriptionDict valueForKey:@"prismValues"]){
-            self.prismRightValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOs"];
-            self.prismLeftValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOd"];
+            self.prismRightValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOd"];
+            self.prismLeftValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOs"];
         }
         if ([currentPrescriptionDict valueForKey:@"base"]){
             self.baseRigthtValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"od"];

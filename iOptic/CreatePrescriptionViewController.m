@@ -158,6 +158,10 @@
             self.oldName = [personalDetails valueForKey:@"name"];
             self.personalDetails = [[self.editableDetails valueForKey:@"prescriptionInfo"] mutableCopy];
             self.pdDetails = [[[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"pd"] mutableCopy];
+        
+            if(!self.pdDetails)
+                self.pdDetails = [[NSMutableDictionary alloc] init];
+
             self.prescription.name = [personalDetails valueForKey:@"name"];
             self.doctorName = [personalDetails valueForKey:@"doctorName"];
             self.neededConfiguration = [self.editableDetails mutableCopy];
@@ -202,7 +206,6 @@
         self.neededConfiguration = [[NSMutableDictionary alloc] init];
         self.regularLensDetails = [[NSMutableDictionary alloc] init];
         [self.neededConfiguration setObject:self.personalDetails forKey:@"prescriptionInfo"];
-       // [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
     }
     
     
@@ -604,8 +607,8 @@
                 if ([self.editableDetails valueForKey:@"prescriptionGlasses"]){
                     NSDictionary *prism = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"prismValues"];
                     NSDictionary *base = [[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"base"];
-                    [cell.prismRightBtn setTitle:[prism valueForKey:@"prismOs"] forState:UIControlStateNormal];
-                    [cell.prismLeftBtn setTitle:[prism valueForKey:@"prismOd"] forState:UIControlStateNormal];
+                    [cell.prismRightBtn setTitle:[prism valueForKey:@"prismOd"] forState:UIControlStateNormal];
+                    [cell.prismLeftBtn setTitle:[prism valueForKey:@"prismOs"] forState:UIControlStateNormal];
                     [cell.baseRightBtn setTitle:[base valueForKey:@"od"] forState:UIControlStateNormal];
                     [cell.baseLeftBtn setTitle:[base valueForKey:@"os"] forState:UIControlStateNormal];
                 }
@@ -1597,7 +1600,7 @@
                 [self.regularLensDetails setObject:addDetails forKey:@"base"];
                 [addDetails setValue:item forKey:@"os"];
             }
-        }else if(btn.tag == 5678){
+        }else if(btn.tag == 5678){//right pd
             if ([self.regularLensDetails objectForKey:@"pd"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
@@ -1631,7 +1634,7 @@
                 }
                 [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
             }
-        }else if(btn.tag == 56789){
+        }else if(btn.tag == 56789){//left pd
             if ([self.regularLensDetails objectForKey:@"pd"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
@@ -1836,7 +1839,7 @@
 
 -(IBAction)basePickerTapped:(id)sender
 {
-    [self showPickerView:sender withPickerList:@[@"In", @"out", @"Up", @"Down"]];
+    [self showPickerView:sender withPickerList:@[@"in", @"out", @"up", @"down"]];
 }
 
 -(IBAction)selectPdPickerTapped:(id)sender
@@ -1877,26 +1880,39 @@
 -(void)selectedSpecialGlass:(NSString*)selected
 {
     if(self.editableDetails){
-        if ([[self.editableDetails valueForKey:@"prescriptionGlasses"] objectForKey:@"specialGlass"]){
-            NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
-            NSMutableArray *newArray = [NSMutableArray arrayWithArray:tempArray];
+        NSDictionary *prescriptionGlasses = [self.editableDetails valueForKey:@"prescriptionGlasses"];
+        if(prescriptionGlasses)
+        {
+            NSMutableArray *newArray;
+            if([prescriptionGlasses objectForKey:@"specialGlass"])
+            {
+                NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
+                newArray = [NSMutableArray arrayWithArray:tempArray];
+            }
+            else
+            {
+                NSLog(@"Didnt have special glasses yet, creating dummy list");
+                newArray = [NSMutableArray new];
+            }
             [newArray addObject:selected];
-//            [[self.editableDetails valueForKey:@"prescriptionGlasses"] setObject:newArray forKey:@"specialGlass"];
             [self.regularLensDetails setObject:newArray forKey:@"specialGlass"];
+        }
+        else
+        {
+            NSLog(@"in selectedSpecialGlass something went wrong");
+            assert(0);
         }
     }else{
         
+        NSMutableArray *specialGlasses;
         if ([self.regularLensDetails objectForKey:@"specialGlass"]){
-            NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
-            [tempArray addObject:selected];
-            //        NSMutableArray *specialGlasses = [NSMutableArray arrayWithArray:[self.regularLensDetails objectForKey:@"specialGlass"]];
-            // [specialGlasses addObject:selected];
-            [self.regularLensDetails setObject:tempArray forKey:@"specialGlass"];
+            specialGlasses = [self.regularLensDetails objectForKey:@"specialGlass"];
         }else{
-            NSMutableArray *specialGlasses = [[NSMutableArray alloc] init];
-            [specialGlasses addObject:selected];
-            [self.regularLensDetails setObject:specialGlasses forKey:@"specialGlass"];
+            specialGlasses = [[NSMutableArray alloc] init];
         }
+        [specialGlasses addObject:selected];
+        [self.regularLensDetails setObject:specialGlasses forKey:@"specialGlass"];
+
     }
 }
 -(void)deSelectedSpecialGlass:(NSString*)deSelected
@@ -2150,19 +2166,32 @@
 -(void)saveAndProceed
 {
  
-    if (([self.contactLensDetails allKeys].count > 0) && (self.isContactLensCategorySelected)){
-        [self.neededConfiguration setValue:self.contactLensDetails forKey:@"prescriptionContactLens"];
+    if(self.isContactLensCategorySelected)
+    {
+        if ([self.contactLensDetails allKeys].count > 0){
+            [self.neededConfiguration setValue:self.contactLensDetails forKey:@"prescriptionContactLens"];
+        }
+        [self.neededConfiguration setValue:[NSNumber numberWithBool:true] forKey:@"contactLens"];
+
     }
-    
-    if (([self.regularLensDetails allKeys].count > 0) && (self.isRegularContactLensSelected)){
-        [self.neededConfiguration setValue:self.regularLensDetails forKey:@"prescriptionGlasses"];
-    }else{
+    else
+    {
         [self.neededConfiguration setValue:[NSNumber numberWithBool:false] forKey:@"contactLens"];
     }
-    if (([self.personalDetails allKeys].count > 0) ){
-        [self.neededConfiguration setValue:self.personalDetails forKey:@"prescriptionInfo"];
+    
+    if(self.isRegularLensCategorySelected)
+    {
+        if ([self.regularLensDetails allKeys].count > 0){
+            [self.neededConfiguration setValue:self.regularLensDetails forKey:@"prescriptionGlasses"];
+        }
+        [self.neededConfiguration setValue:[NSNumber numberWithBool:true] forKey:@"regularLens"];
+
     }else{
         [self.neededConfiguration setValue:[NSNumber numberWithBool:false] forKey:@"regularLens"];
+    }
+    
+    if (([self.personalDetails allKeys].count > 0) ){
+        [self.neededConfiguration setValue:self.personalDetails forKey:@"prescriptionInfo"];
     }
     
     NSError *error = nil;

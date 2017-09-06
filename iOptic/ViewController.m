@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "QRCodeReaderViewController.h"
 #import "QRCodeReader.h"
+#import "CreatePrescriptionViewController.h"
 @import Firebase;
 
 
@@ -238,17 +239,26 @@
                                                                error:&jsonError];
         if(json)
         {
-            self.selectedPrescriptionName = [[json valueForKey:@"prescriptionInfo"] valueForKey:@"name"];
-            self.currentPrescription = json;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json                                                               options:NSJSONWritingPrettyPrinted error:&jsonError];
             self.currentJSON = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             if (jsonError == nil)
             {
-                [self performSegueWithIdentifier:@"showPrescprion" sender:self];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationController"];
+                
+                
+                CreatePrescriptionViewController *viewcontroller =[storyboard instantiateViewControllerWithIdentifier:@"CreatePrescriptionViewController"];
+                viewcontroller.selectedPrescriptionName = [[json valueForKey:@"prescriptionInfo"] valueForKey:@"name"];
+                viewcontroller.selectedPrescriptionDetails = json;
+                
+                [navigationController setViewControllers:@[viewcontroller]];
+                
+                [self presentViewController:navigationController animated:YES completion:nil];
+
             }
             else
             {
-                
+                NSLog(@"unable to read QR JSON data jsonError:%@", jsonError);
             }
         }
         else
