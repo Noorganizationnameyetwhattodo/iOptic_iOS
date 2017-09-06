@@ -121,6 +121,7 @@
 		B1C0E32B1EE24E8F005B9DFB /* PrescriptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C0E32A1EE24E8F005B9DFB /* PrescriptionManager.m */; };
 		B1D7BDDB1ED5246F00B1E2EC /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D7BDDA1ED5246E00B1E2EC /* menu_icon.png */; };
 		B1D7BDDE1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D7BDDD1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m */; };
+		B1E8AD9A1F60A1B700CB5A91 /* close_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -293,6 +294,7 @@
 		B1D7BDDA1ED5246E00B1E2EC /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		B1D7BDDC1ED577DC00B1E2EC /* iOpticLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpticLeftMenuViewController.h; sourceTree = "<group>"; };
 		B1D7BDDD1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOpticLeftMenuViewController.m; sourceTree = "<group>"; };
+		B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_icon_white.png; sourceTree = "<group>"; };
 		FA50D9E4446778797030C27F /* Pods_iOptic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOptic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -510,6 +512,7 @@
 		B13B28E61ED9AA05006ACBD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */,
 				B16110501F49CDBE00A3598C /* qr_code.png */,
 				B1C0E3241EE142B5005B9DFB /* close_icon.png */,
 				B1A01C901F557B94005E8F87 /* logout_icon.png */,
@@ -735,6 +738,7 @@
 				B1C0E3211EE0F1C3005B9DFB /* about_icon.png in Resources */,
 				B1A0B1781F4C0D270068858C /* 2.mov in Resources */,
 				B140F98A1ED3CD360063D09C /* icon3.png in Resources */,
+				B1E8AD9A1F60A1B700CB5A91 /* close_icon_white.png in Resources */,
 				7FF59FDC1F13CFEE00C4A815 /* XTableViewCell.xib in Resources */,
 				B1C0E31D1EE0F0A9005B9DFB /* home_icon.png in Resources */,
 				B1A0B17A1F4C0D300068858C /* 3.mov in Resources */,

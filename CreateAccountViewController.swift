@@ -128,6 +128,11 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
+    @IBAction func closeTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    
     //validate the user input form
     func validateForm() -> Bool{
         

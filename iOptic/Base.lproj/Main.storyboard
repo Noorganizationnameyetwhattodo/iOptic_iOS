@@ -813,6 +813,7 @@
                     <connections>
                         <outlet property="displayNameLabel" destination="ahs-LO-DED" id="SmF-wW-9hU"/>
                         <outlet property="emailIdLabel" destination="L3i-vk-miv" id="4sH-hg-sf6"/>
+                        <outlet property="profileImageView" destination="ZLz-fv-NIo" id="pFu-Px-Pu8"/>
                         <outlet property="tableView" destination="Gzj-65-Q0N" id="Gd7-dA-Mgu"/>
                     </connections>
                 </viewController>

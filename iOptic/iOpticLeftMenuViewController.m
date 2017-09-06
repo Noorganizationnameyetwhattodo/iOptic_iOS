@@ -21,6 +21,7 @@
 @property(nonatomic, weak) IBOutlet UITableView *tableView;
 @property(nonatomic, weak) IBOutlet UILabel *displayNameLabel;
 @property(nonatomic, weak) IBOutlet UILabel *emailIdLabel;
+@property(nonatomic, weak) IBOutlet UIImageView *profileImageView;
 
 @property(nonatomic, strong) NSMutableArray<MenuItem*> *menuItemsList;
 @end
@@ -34,7 +35,6 @@
     BOOL emailVerified = NO;
     NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
     NSString *loginType = [userdefaults objectForKey:@"loginType"];
-    
     if(user)
     {
         if([loginType isEqualToString:@"email"])
@@ -51,11 +51,32 @@
     {
         self.emailIdLabel.text = user.email;
         self.displayNameLabel.text = user.displayName;
+        
+        NSURL *profileDPURL = user.photoURL;
+        if(profileDPURL)
+        {
+            UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            [indicator startAnimating];
+            [indicator setCenter:self.profileImageView.center];
+            [self.view addSubview:indicator];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                
+                UIImage *image = [UIImage imageWithCIImage:[CIImage imageWithContentsOfURL:profileDPURL]];
+                dispatch_async(dispatch_get_main_queue(), ^
+                               {
+                                   [indicator removeFromSuperview];
+                                   self.profileImageView.image = image;
+                               });
+            });
+
+        }
     }
     else
     {
         self.emailIdLabel.text = @"";
         self.displayNameLabel.text = @"Welcome";
+        self.profileImageView.image = nil;
     }
 
     self.menuItemsList = [NSMutableArray new];

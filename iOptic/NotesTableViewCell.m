@@ -54,6 +54,10 @@
         textView.text = @"enter any notes here (optional)";
         textView.textColor = [UIColor lightGrayColor]; //optional
     }
+    else
+    {
+        [self.delegate notesText:self.notesDescLbl.text];
+    }
     [textView resignFirstResponder];
 }
 
