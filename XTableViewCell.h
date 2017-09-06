@@ -78,6 +78,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *rightPDStaticLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dualPDStaticLabel;
+@property (weak, nonatomic) IBOutlet UIView *prismBaseView;
 
 
 

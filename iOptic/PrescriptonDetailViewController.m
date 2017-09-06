@@ -204,7 +204,7 @@
     }else if((indexPath.section == 1)&&([self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"])){
         return 918.0f;
     }else if((indexPath.section == 1)&&([self.currentPrescriptionDict valueForKey:@"prescriptionContactLens"])){
-        return 718.0f;
+        return 640.0f;
     }else if((indexPath.section == 2)&&([self.currentPrescriptionDict valueForKey:@"prescriptionContactLens"])&&[self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"]){
         return 718.0f;
     }else if((indexPath.section == 2)&&([[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"])){

@@ -77,20 +77,24 @@
     }else{
         
     }
-    if ([currentPrescriptionDict valueForKey:@"prismValues"]){
-        self.prismRightValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOs"];
-        self.prismLeftValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOd"];
-    }else{
-        self.prismRightValue.text = @"-";
-        self.prismLeftValue.text = @"-";
+    
+    NSDictionary *prismValues = [currentPrescriptionDict valueForKey:@"prismValues"];
+    if(prismValues)
+    {
+        self.prismBaseView.hidden = NO;
+        if ([currentPrescriptionDict valueForKey:@"prismValues"]){
+            self.prismRightValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOs"];
+            self.prismLeftValue.text = [[currentPrescriptionDict valueForKey:@"prismValues"] valueForKey:@"prismOd"];
+        }
+        if ([currentPrescriptionDict valueForKey:@"base"]){
+            self.baseRigthtValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"od"];
+            self.baseLeftValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"os"];
+        }    }
+    else
+    {
+        self.prismBaseView.hidden = YES;
     }
-    if ([currentPrescriptionDict valueForKey:@"base"]){
-        self.baseRigthtValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"od"];
-        self.baseLeftValue.text = [[currentPrescriptionDict valueForKey:@"base"] valueForKey:@"os"];
-    }else{
-        self.baseRigthtValue.text = @"-";
-        self.baseLeftValue.text = @"-";
-    }
+    
     
     if ([[currentPrescriptionDict valueForKey:@"isDualPd"] boolValue]){
         if ([[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"] && [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"od"]){

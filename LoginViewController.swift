@@ -115,7 +115,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                         self.hideSpinner {
                             
                             if user.isEmailVerified == false {
-                                
+                                UserDefaults.standard.set("email", forKey: "loginType")
+
                                 let msg = "Please verify your email address and login again. Click Resend if you missed it."
                                 let buttonTitles = ["OK","RESEND"]
                                 self.showMessagePrompt(msg, withTitle:"Verify Email Address", withButtonTitles:buttonTitles){(index) in
