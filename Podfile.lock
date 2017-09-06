@@ -5,9 +5,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Crashlytics (3.8.5):
+  - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.12)
+  - Fabric (1.6.13)
   - FBSDKCoreKit (4.26.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.26.0):
@@ -32,7 +32,7 @@ PODS:
     - nanopb (~> 0.3)
   - FirebaseInstanceID (2.0.2):
     - FirebaseCore (~> 4.0)
-  - GoogleSignIn (4.0.2):
+  - GoogleSignIn (4.1.0):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
     - GTMOAuth2 (~> 1.0)
@@ -70,8 +70,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
   FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
   FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
   Firebase: 052c0de688fc87b414996eea13e223dd9fee3fa2
@@ -79,7 +79,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: f8b07aa83de60d606b4eadd81484b3ac2097ea3e
   FirebaseCore: 28def3c643989c97ea5a69ea5000f5fa9902b9fd
   FirebaseInstanceID: c4c7fca62c7b7330caee5da04f19a37ea37bb1c1
-  GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
+  GoogleSignIn: 8c599fc10d25b2af86a3f82fd9631e863f2b1400
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
