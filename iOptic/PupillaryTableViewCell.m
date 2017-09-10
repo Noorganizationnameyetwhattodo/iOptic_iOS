@@ -24,17 +24,11 @@
 
 
 - (IBAction)singlePDTapped:(id)sender {
-    [self.pdTitleLabel setText:@"select pd"];
-    [self.rightLabel setHidden:YES];
-    [self.leftLabel setHidden:YES];
     [self.delegate pupillarySelected:SINGLE_PD_SELECTED cell:self];
 }
 
 
 - (IBAction)dualPDTapped:(id)sender {
-    [self.pdTitleLabel setText:@"pd"];
-    [self.rightLabel setHidden:NO];
-    [self.leftLabel setHidden:NO];
     [self.delegate pupillarySelected:DUAL_PD_SELECTED cell:self];
 
 }

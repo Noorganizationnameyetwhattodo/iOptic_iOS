@@ -106,7 +106,12 @@
             self.pupillaryRightValueLbl.text = [[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"singlePd"];
             [self.dualPDView setHidden:YES];
             self.dualPDStaticLabel.hidden = YES;
-            self.rightPDStaticLabel.text = @"puillary distance (PD)";
+            self.rightPDStaticLabel.text = @"pupillary distance (PD)";
+            UIFont *font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic"
+                                           size:13.0f];
+            [self.rightPDStaticLabel setFont:font];
+
+
         }
     
     NSArray *specialGlasses = [currentPrescriptionDict valueForKey:@"specialGlass"];

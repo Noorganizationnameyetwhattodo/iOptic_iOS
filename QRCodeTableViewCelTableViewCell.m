@@ -9,6 +9,10 @@
 #import "QRCodeTableViewCelTableViewCell.h"
 #import "UIImage+MDQRCode.h"
 
+@interface QRCodeTableViewCelTableViewCell()
+@property(nonatomic) NSString *qrJsonString;
+@end
+
 @implementation QRCodeTableViewCelTableViewCell
 
 - (void)awakeFromNib {
@@ -24,26 +28,16 @@
 
 -(void)updateQR:(NSString*)json
 {
-    self.qrCodeImageView.image = [UIImage mdQRCodeForString:json size:self.qrCodeImageView.bounds.size.width fillColor:[UIColor blackColor]];
-    
-   /* NSError *error = nil;
-    ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-    ZXBitMatrix* result = [writer encode:json
-                                  format:kBarcodeFormatQRCode
-                                   width:400
-                                  height:400
-                                   error:&error];
-    
-    if (result) {
-     //   CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
-        UIImage* uiImage = [[UIImage alloc] initWithCGImage:[[ZXImage imageWithMatrix:result] cgimage]];
-        self.qrCodeImageView.image = uiImage;
-        
-        // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
-    } else {
-        NSString *errorMessage = [error localizedDescription];
-        NSLog(@"errorMessage:%@",errorMessage);
-    }*/
+    self.qrJsonString = json;
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self.contentView layoutSubviews];
+    float width = self.qrCodeImageView.bounds.size.width;
+    self.qrCodeImageView.image = [UIImage mdQRCodeForString:self.qrJsonString size:width fillColor:[UIColor blackColor]];
+}
+
 
 @end

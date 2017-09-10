@@ -55,9 +55,17 @@ class ThirdOnBoardViewController: UIViewController,OnBoardPlayAnimation {
             let moviePath = bundle.path(forResource: "3", ofType: "mov")
             let movieUrl = NSURL.fileURL(withPath: moviePath!)
             self.player = AVPlayer.init(url: movieUrl)
+            NotificationCenter.default.addObserver(self, selector: #selector(ThirdOnBoardViewController.playerDidFinishPlaying),
+                                                             name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
             self.playerViewController.player = self.player
             self.playerViewController.player?.play()
         }
+    }
+    
+    func playerDidFinishPlaying()
+    {
+        NotificationCenter.default.removeObserver(self)
+        playAnimation()
     }
 
 }

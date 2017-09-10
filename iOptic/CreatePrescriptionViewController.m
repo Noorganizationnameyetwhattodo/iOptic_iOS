@@ -23,6 +23,7 @@
 #import "DatePickerViewController.h"
 #import "iOptic-Swift.h"
 #import "UIView+Toast.h"
+#import "UIViewController+Alerts.h"
 
 @import Firebase;
 
@@ -77,7 +78,7 @@
 @property(nonatomic) NSString *date;
 @property(nonatomic) BOOL isDistanceLensSelected;
 @property(nonatomic) NSString *oldName;
-
+@property(nonatomic) BOOL isPDIgnored;
 
 
 // values to preserve
@@ -632,22 +633,29 @@
         cell.layer.cornerRadius = 4.0f;
         NSDictionary *signlePD = [[[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"pd"] valueForKey:@"singlePd"];
         NSDictionary *dualPD = [[[self.editableDetails valueForKey:@"prescriptionGlasses"] valueForKey:@"pd"] valueForKey:@"dualPd"];
-        if (self.isSinglePDSelected || (signlePD != nil)){
+        if (self.isSinglePDSelected){
             [cell.singlePDBtn setImage:[UIImage imageNamed:@"select_check-mark"] forState:UIControlStateNormal];
             [cell.dualPDBtn setImage:[UIImage imageNamed:@"unselected_radiobutton"] forState:UIControlStateNormal];
+            
+            [cell.pdTitleLabel setText:@"select pd"];
+            [cell.rightLabel setHidden:YES];
+            [cell.leftLabel setHidden:YES];
+
+            
             if (self.editableDetails){
                 [cell.rightPDBtn setTitle:signlePD forState:UIControlStateNormal];
             }
-        }else if(self.isDualPDSelected || (dualPD != nil)){
+        }else if(self.isDualPDSelected){
             [cell.singlePDBtn setImage:[UIImage imageNamed:@"unselected_radiobutton"] forState:UIControlStateNormal];
             [cell.dualPDBtn setImage:[UIImage imageNamed:@"select_check-mark"] forState:UIControlStateNormal];
+            
+            [cell.pdTitleLabel setText:@"pd"];
+            [cell.rightLabel setHidden:NO];
+            [cell.leftLabel setHidden:NO];
+
             if (self.editableDetails){
-                //[cell.rightPDBtn setHidden:NO];
-               // [cell.leftPDBtn setHidden:NO];
                 [cell.rightPDBtn setTitle:[dualPD valueForKey:@"od"] forState:UIControlStateNormal];
                 [cell.leftPDBtn setTitle:[dualPD valueForKey:@"os"] forState:UIControlStateNormal];
-                //[cell.rightPDBtn setNeedsDisplay];
-                //[cell.leftPDBtn setNeedsLayout];
             }
         }else{
             [cell.singlePDBtn setImage:[UIImage imageNamed:@"unselected_radiobutton"] forState:UIControlStateNormal];
@@ -825,6 +833,7 @@
             self.isDualPDSelected = NO;
             [self.regularLensDetails removeObjectForKey:@"pd"];
             [self.regularLensDetails setValue:[NSNumber numberWithBool:false] forKey:@"isDualPd"];
+            
             NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
             [self reloadTableAtIndexPath:indexPath completionHandler:^(BOOL success) {
                 
@@ -1610,16 +1619,21 @@
                         [newDict addEntriesFromDictionary:oldDict];
                         [newDict setValue:item forKey:@"od"];
                         [self.pdDetails setObject:newDict forKey:@"dualPd"];
+                        [self.pdDetails removeObjectForKey:@"singlePd"];
                         [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }else{
                         [self.pdDetails setObject:item forKey:@"singlePd"];
+                        [self.pdDetails removeObjectForKey:@"dualPd"];
+
                         [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }
                 }else{
                     if (self.isSinglePDSelected){
                         [self.pdDetails setValue:item forKey:@"singlePd"];
+                        [self.pdDetails removeObjectForKey:@"dualPd"];
                         [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }else{
+                        [self.pdDetails removeObjectForKey:@"singlePd"];
                         [[self.pdDetails objectForKey:@"dualPd"] setValue:item forKey:@"od"];
                         [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
                     }
@@ -1635,6 +1649,7 @@
                 [self.regularLensDetails setObject:self.pdDetails forKey:@"pd"];
             }
         }else if(btn.tag == 56789){//left pd
+            [self.pdDetails removeObjectForKey:@"singlePd"];
             if ([self.regularLensDetails objectForKey:@"pd"]){
                 if (self.editableDetails){
                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
@@ -2003,7 +2018,7 @@
 
 -(void)showMessageForUpdate{
     __weak typeof (self)weakSelf = self;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Save Changes" message:@"click save to update changes to this prescription.you can click cancel to continue to make changes" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Save Changes" message:@"Click save to update changes to this prescription.You can click cancel to continue to make changes." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"SAVE" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [weakSelf saveAndProceed];
         [self.navigationController popToRootViewControllerAnimated:true];
@@ -2133,8 +2148,24 @@
 //        }
         else if(!self.isSinglePDSelected && !self.isDualPDSelected)
         {
-            [self showPopupWithContent:@"select Pupillary value"];
-            return;
+            if(!self.isPDIgnored)
+            {
+                NSString *text = @"Do you have pd or pupillary distance values on your prescription? can't find it! that's fine click on Save your Prescription.";
+                
+                [self showMessagePrompt:text withTitle:@"Pupillary distance" withButtonTitles:@[@"YES, FOUND THAT!", @"CAN\"T FIND IT!"] completionBlock:^(NSInteger index)
+                 {
+                     if(index == 0)
+                     {
+                         
+                     }
+                     else
+                     {
+                         self.isPDIgnored = true;
+                     }
+                 }
+                 ];
+                return;
+            }
         }else if(self.isSinglePDSelected){
             if (![[[self.regularLensDetails valueForKey:@"pd"] valueForKey:@"singlePd"] length]){
                 [self showPopupWithContent:@"select PD value"];

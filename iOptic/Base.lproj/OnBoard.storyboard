@@ -23,14 +23,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Meet iOptic, an ingenious app to digitally save your Eye Prescriptions." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lU5-ch-SPb">
-                                <rect key="frame" x="15" y="40" width="345" height="93"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <rect key="frame" x="15" y="72" width="345" height="115"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7n0-Jb-9jG">
-                                <rect key="frame" x="56" y="557" width="263" height="33"/>
+                                <rect key="frame" x="30" y="530" width="315" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fSW-to-glL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="CONTINUE">
                                     <color key="titleColor" red="0.0013082028600000001" green="0.6658856273" blue="0.77116543049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -48,11 +51,11 @@
                         <color key="backgroundColor" red="0.051201947033405304" green="0.73020368814468384" blue="0.7614017128944397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="znK-j8-NJQ" firstAttribute="top" secondItem="7n0-Jb-9jG" secondAttribute="bottom" constant="77" id="4Sq-qX-jZP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7n0-Jb-9jG" secondAttribute="trailing" constant="40" id="FYk-3h-7Kb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7n0-Jb-9jG" secondAttribute="trailing" constant="14" id="FYk-3h-7Kb"/>
                             <constraint firstAttribute="trailing" secondItem="lU5-ch-SPb" secondAttribute="trailing" constant="15" id="XgS-pB-eZj"/>
-                            <constraint firstItem="7n0-Jb-9jG" firstAttribute="leading" secondItem="PH0-R4-zEV" secondAttribute="leadingMargin" constant="40" id="bQ5-lc-ueK"/>
+                            <constraint firstItem="7n0-Jb-9jG" firstAttribute="leading" secondItem="PH0-R4-zEV" secondAttribute="leadingMargin" constant="14" id="bQ5-lc-ueK"/>
                             <constraint firstItem="lU5-ch-SPb" firstAttribute="leading" secondItem="PH0-R4-zEV" secondAttribute="leading" constant="15" id="fQt-A3-Dp1"/>
-                            <constraint firstItem="lU5-ch-SPb" firstAttribute="top" secondItem="NdV-Bd-5mx" secondAttribute="bottom" constant="20" id="haP-Sb-Wis"/>
+                            <constraint firstItem="lU5-ch-SPb" firstAttribute="top" secondItem="NdV-Bd-5mx" secondAttribute="bottom" constant="52" id="haP-Sb-Wis"/>
                         </constraints>
                     </view>
                     <connections>
@@ -78,14 +81,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Saving an eye prescription, digitally has never been so easy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-XW-sVL">
-                                <rect key="frame" x="15" y="40" width="345" height="93"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <rect key="frame" x="15" y="72" width="345" height="115"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-1e-R0j">
-                                <rect key="frame" x="56" y="557" width="263" height="33"/>
+                                <rect key="frame" x="30" y="530" width="315" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3n2-zh-7aX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="CONTINUE">
                                     <color key="titleColor" red="0.0013082028600000001" green="0.6658856273" blue="0.77116543049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,12 +108,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.05120194703" green="0.73020368810000003" blue="0.76140171290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CYI-1e-R0j" firstAttribute="leading" secondItem="h4w-ZE-uV8" secondAttribute="leadingMargin" constant="40" id="1Gy-TV-RIO"/>
-                            <constraint firstItem="ghi-XW-sVL" firstAttribute="top" secondItem="0Zr-10-qp6" secondAttribute="bottom" constant="20" id="ASj-wX-h68"/>
+                            <constraint firstItem="CYI-1e-R0j" firstAttribute="leading" secondItem="h4w-ZE-uV8" secondAttribute="leadingMargin" constant="14" id="1Gy-TV-RIO"/>
+                            <constraint firstItem="ghi-XW-sVL" firstAttribute="top" secondItem="0Zr-10-qp6" secondAttribute="bottom" constant="52" id="ASj-wX-h68"/>
                             <constraint firstAttribute="trailing" secondItem="ghi-XW-sVL" secondAttribute="trailing" constant="15" id="GbM-bx-T6M"/>
                             <constraint firstItem="ghi-XW-sVL" firstAttribute="leading" secondItem="h4w-ZE-uV8" secondAttribute="leading" constant="15" id="Mxx-23-kbf"/>
                             <constraint firstItem="PcE-I0-9SV" firstAttribute="top" secondItem="CYI-1e-R0j" secondAttribute="bottom" constant="77" id="Z8j-i8-Cv7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CYI-1e-R0j" secondAttribute="trailing" constant="40" id="aqm-LO-Oew"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CYI-1e-R0j" secondAttribute="trailing" constant="14" id="aqm-LO-Oew"/>
                         </constraints>
                     </view>
                     <connections>
@@ -133,14 +139,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Like Never Before, Discover an effortless way to share prescription with QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUP-Ne-Naj">
-                                <rect key="frame" x="15" y="40" width="345" height="93"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <rect key="frame" x="15" y="72" width="345" height="115"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M50-xl-YxJ">
-                                <rect key="frame" x="56" y="557" width="263" height="33"/>
+                                <rect key="frame" x="30" y="530" width="315" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2ju-nD-GgG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="LETS GET STARTED">
                                     <color key="titleColor" red="0.0013082028600000001" green="0.6658856273" blue="0.77116543049999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -157,11 +166,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.05120194703" green="0.73020368810000003" blue="0.76140171290000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="M50-xl-YxJ" firstAttribute="leading" secondItem="FA6-BT-bXs" secondAttribute="leadingMargin" constant="40" id="DT0-Ki-RaA"/>
-                            <constraint firstItem="gUP-Ne-Naj" firstAttribute="top" secondItem="L1s-Ub-Lm4" secondAttribute="bottom" constant="20" id="OeB-Q8-dew"/>
+                            <constraint firstItem="M50-xl-YxJ" firstAttribute="leading" secondItem="FA6-BT-bXs" secondAttribute="leadingMargin" constant="14" id="DT0-Ki-RaA"/>
+                            <constraint firstItem="gUP-Ne-Naj" firstAttribute="top" secondItem="L1s-Ub-Lm4" secondAttribute="bottom" constant="52" id="OeB-Q8-dew"/>
                             <constraint firstItem="uld-bH-lwU" firstAttribute="top" secondItem="M50-xl-YxJ" secondAttribute="bottom" constant="77" id="YfN-Mt-M3k"/>
                             <constraint firstAttribute="trailing" secondItem="gUP-Ne-Naj" secondAttribute="trailing" constant="15" id="crO-XM-fz0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="M50-xl-YxJ" secondAttribute="trailing" constant="40" id="fWH-3u-FhW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="M50-xl-YxJ" secondAttribute="trailing" constant="14" id="fWH-3u-FhW"/>
                             <constraint firstItem="gUP-Ne-Naj" firstAttribute="leading" secondItem="FA6-BT-bXs" secondAttribute="leading" constant="15" id="sgg-Je-vwl"/>
                         </constraints>
                     </view>

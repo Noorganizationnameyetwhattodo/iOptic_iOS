@@ -10,6 +10,8 @@
 #import "MenuItem.h"
 #import "UIViewController+LGSideMenuController.h"
 #import "AppDelegate.h"
+#import "iOpticAboutViewController.h"
+
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 @import Firebase;
@@ -76,7 +78,7 @@
     {
         self.emailIdLabel.text = @"";
         self.displayNameLabel.text = @"Welcome";
-        self.profileImageView.image = nil;
+        self.profileImageView.image = [UIImage imageNamed:@"default_profile_icon"];
     }
 
     self.menuItemsList = [NSMutableArray new];
@@ -181,7 +183,12 @@
                                          kFIRParameterItemName:@"NAV MENU ABOUT",
                                          kFIRParameterContentType:@"text"
                                          }];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        iOpticAboutViewController *aboutVC = [storyboard instantiateViewControllerWithIdentifier:@"iOpticAboutViewController"];
 
+        UIWindow *window = UIApplication.sharedApplication.delegate.window;
+        window.rootViewController = aboutVC;
     }
     else if([identifier isEqualToString:@"LoginViewController"])
     {

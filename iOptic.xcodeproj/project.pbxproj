@@ -75,6 +75,7 @@
 		7FFAE0AD1F02A49000C303FE /* whitetrash.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FFAE0AC1F02A49000C303FE /* whitetrash.png */; };
 		92FBA4271F302442002304CB /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FBA4261F302442002304CB /* CALayer+XibConfiguration.m */; };
 		947A493F1B0669F3460EFACE /* Pods_iOptic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA50D9E4446778797030C27F /* Pods_iOptic.framework */; };
+		B106A5241F631A45000D69D6 /* iOpticAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B106A5231F631A45000D69D6 /* iOpticAboutViewController.m */; };
 		B1396A4E1EE098A300B00CB8 /* default_profile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1396A4D1EE098A300B00CB8 /* default_profile_icon.png */; };
 		B140F9431ED3C1B40063D09C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B140F9421ED3C1B40063D09C /* main.m */; };
 		B140F9461ED3C1B40063D09C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B140F9451ED3C1B40063D09C /* AppDelegate.m */; };
@@ -122,6 +123,7 @@
 		B1D7BDDB1ED5246F00B1E2EC /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1D7BDDA1ED5246E00B1E2EC /* menu_icon.png */; };
 		B1D7BDDE1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D7BDDD1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m */; };
 		B1E8AD9A1F60A1B700CB5A91 /* close_icon_white.png in Resources */ = {isa = PBXBuildFile; fileRef = B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */; };
+		B1EFE8171F65D2E6005BE7C8 /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B1EFE8161F65D2E6005BE7C8 /* login_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +231,8 @@
 		92FBA4251F302442002304CB /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		92FBA4261F302442002304CB /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		952DC11E0D5DEB93C07BDECF /* Pods-iOptic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOptic.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOptic/Pods-iOptic.release.xcconfig"; sourceTree = "<group>"; };
+		B106A5221F631A45000D69D6 /* iOpticAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpticAboutViewController.h; sourceTree = "<group>"; };
+		B106A5231F631A45000D69D6 /* iOpticAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOpticAboutViewController.m; sourceTree = "<group>"; };
 		B1396A4D1EE098A300B00CB8 /* default_profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_profile_icon.png; sourceTree = "<group>"; };
 		B140F93E1ED3C1B40063D09C /* iOptic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOptic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B140F9421ED3C1B40063D09C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 		B1D7BDDC1ED577DC00B1E2EC /* iOpticLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpticLeftMenuViewController.h; sourceTree = "<group>"; };
 		B1D7BDDD1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOpticLeftMenuViewController.m; sourceTree = "<group>"; };
 		B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_icon_white.png; sourceTree = "<group>"; };
+		B1EFE8161F65D2E6005BE7C8 /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_logo.png; sourceTree = SOURCE_ROOT; };
 		FA50D9E4446778797030C27F /* Pods_iOptic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOptic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -512,6 +517,7 @@
 		B13B28E61ED9AA05006ACBD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B1EFE8161F65D2E6005BE7C8 /* login_logo.png */,
 				B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */,
 				B16110501F49CDBE00A3598C /* qr_code.png */,
 				B1C0E3241EE142B5005B9DFB /* close_icon.png */,
@@ -608,6 +614,8 @@
 				B140F94F1ED3C1B40063D09C /* LaunchScreen.storyboard */,
 				B140F9521ED3C1B40063D09C /* Info.plist */,
 				B140F9411ED3C1B40063D09C /* Supporting Files */,
+				B106A5221F631A45000D69D6 /* iOpticAboutViewController.h */,
+				B106A5231F631A45000D69D6 /* iOpticAboutViewController.m */,
 			);
 			path = iOptic;
 			sourceTree = "<group>";
@@ -686,7 +694,7 @@
 				TargetAttributes = {
 					B140F93D1ED3C1B40063D09C = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 64QBF2DALA;
+						DevelopmentTeam = YRRKG63BYD;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -716,6 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1C0E3251EE142B5005B9DFB /* close_icon.png in Resources */,
+				B1EFE8171F65D2E6005BE7C8 /* login_logo.png in Resources */,
 				7FFAE0AD1F02A49000C303FE /* whitetrash.png in Resources */,
 				B140F9891ED3CD360063D09C /* icon2.png in Resources */,
 				B16110511F49CDBE00A3598C /* qr_code.png in Resources */,
@@ -862,6 +871,7 @@
 				7F88119E1F32354000FE235D /* DatePickerViewController.m in Sources */,
 				7F593DA21F11EDAE00E8AEB9 /* PrescriptionDetailsViewTableViewCell.m in Sources */,
 				B140F9431ED3C1B40063D09C /* main.m in Sources */,
+				B106A5241F631A45000D69D6 /* iOpticAboutViewController.m in Sources */,
 				B17919B01ED51304007B1F89 /* PickerViewController.m in Sources */,
 				B17919AE1ED51304007B1F89 /* MenuItem.m in Sources */,
 				B17919C51ED5133F007B1F89 /* LGSideMenuView.m in Sources */,
@@ -1028,13 +1038,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 64QBF2DALA;
+				DEVELOPMENT_TEAM = YRRKG63BYD;
 				INFOPLIST_FILE = iOptic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOptic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1048,13 +1061,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 64QBF2DALA;
+				DEVELOPMENT_TEAM = YRRKG63BYD;
 				INFOPLIST_FILE = iOptic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOptic-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
