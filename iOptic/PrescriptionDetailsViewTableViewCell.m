@@ -41,7 +41,7 @@
 -(void)addGradientToBGDarkGradientView {
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
-    gradient.frame = self.contentView.frame;
+    gradient.frame = self.bgDarkGradientView.frame;
     gradient.colors = @[(id)[UIColor colorWithRed:(1.0/255.0) green:(170.0/255.0) blue:(194.0/255.0) alpha:1.0].CGColor, (id)[UIColor colorWithRed:(0.0/255.0) green:(133.0/255.0) blue:(119.0/255.0) alpha:1.0].CGColor];
     
     [self.bgDarkGradientView.layer insertSublayer:gradient atIndex:0];

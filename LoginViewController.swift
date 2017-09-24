@@ -50,7 +50,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+        Analytics.logEvent("BTN_CLICK_FACEBOOK_LOGIN", parameters: [
             AnalyticsParameterItemID: "BTN_CLICK_FACEBOOK_LOGIN" as NSObject,
             AnalyticsParameterItemName: "FACEBOOK LOGIN" as NSObject,
             AnalyticsParameterContentType: "text" as NSObject
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     
     @IBAction func didSigninAccount(_ sender: Any) {
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+        Analytics.logEvent("BTN_CLICK_LOGIN", parameters: [
             AnalyticsParameterItemID: "BTN_CLICK_LOGIN" as NSObject,
             AnalyticsParameterItemName: "LOGIN" as NSObject,
             AnalyticsParameterContentType: "text" as NSObject
@@ -216,7 +216,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     
     @IBAction func skipTapped(_ sender: Any) {
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+        Analytics.logEvent("BTN_CLICK_SKIP_LOGIN", parameters: [
             AnalyticsParameterItemID: "BTN_CLICK_SKIP_LOGIN" as NSObject,
             AnalyticsParameterItemName: "Skip Login " as NSObject,
             AnalyticsParameterContentType: "text" as NSObject
@@ -234,7 +234,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     
     @IBAction func keepSignInTapped(_ sender: Any) {
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+        Analytics.logEvent("CHKBX_REMEMBER_ME", parameters: [
             AnalyticsParameterItemID: "CHKBX_REMEMBER_ME" as NSObject,
             AnalyticsParameterItemName: "REMEMBER ME" as NSObject,
             AnalyticsParameterContentType: "text" as NSObject

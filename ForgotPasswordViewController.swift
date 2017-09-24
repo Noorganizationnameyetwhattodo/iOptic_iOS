@@ -20,7 +20,7 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         txtEmail.placeholder = "Email Address"
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+        Analytics.logEvent("BTN_CLICK_FORGOT_PWD", parameters: [
             AnalyticsParameterItemID: "BTN_CLICK_FORGOT_PWD" as NSObject,
             AnalyticsParameterItemName: "Forgot Password" as NSObject,
             AnalyticsParameterContentType: "text" as NSObject

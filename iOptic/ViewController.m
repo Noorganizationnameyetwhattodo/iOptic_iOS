@@ -167,7 +167,7 @@
 
 -(IBAction)addPrescriptionAction:(id)sender
 {
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_ADD_PRESP"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_ADD_PRESP",
                                      kFIRParameterItemName:@"Add Prescription",
@@ -185,7 +185,7 @@
 
 - (IBAction)CameraBtnPressed:(id)sender {
     
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_QR"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_QR",
                                      kFIRParameterItemName:@"QR CLICKED",

@@ -200,6 +200,10 @@
                     [self.regularLensDetails setValue:[NSNumber numberWithBool:true] forKey:@"isDualPd"];
                 }
             }
+            else
+            {
+                NSLog(@"No Regular lens yet");
+            }
     }else{
         self.personalDetails = [NSMutableDictionary dictionaryWithCapacity:3];
         self.pdDetails = [[NSMutableDictionary alloc] init];
@@ -423,6 +427,7 @@
         
         if (self.editableDetails){
             cell.dateLabel.text = [[self.editableDetails valueForKey:@"prescriptionInfo"] valueForKey:@"date"];
+            cell.nameLbl.enabled = false;
         }else{
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
             [df setDateStyle:NSDateFormatterLongStyle]; // day, Full month and year
@@ -875,7 +880,7 @@
 
 -(IBAction)dismiss:(id)sender
 {
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_CLOSE_PRESP"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_CLOSE_PRESP",
                                      kFIRParameterItemName:@"Close Prescription",
@@ -1895,34 +1900,22 @@
 -(void)selectedSpecialGlass:(NSString*)selected
 {
     if(self.editableDetails){
-        NSDictionary *prescriptionGlasses = [self.editableDetails valueForKey:@"prescriptionGlasses"];
-        if(prescriptionGlasses)
-        {
-            NSMutableArray *newArray;
-            if([prescriptionGlasses objectForKey:@"specialGlass"])
-            {
-                NSMutableArray *tempArray = [self.regularLensDetails objectForKey:@"specialGlass"];
-                newArray = [NSMutableArray arrayWithArray:tempArray];
-            }
-            else
-            {
-                NSLog(@"Didnt have special glasses yet, creating dummy list");
-                newArray = [NSMutableArray new];
-            }
-            [newArray addObject:selected];
-            [self.regularLensDetails setObject:newArray forKey:@"specialGlass"];
+        NSMutableArray *specialGlasses = [self.regularLensDetails objectForKey:@"specialGlass"];
+        
+        if (!specialGlasses){
+            specialGlasses = [[NSMutableArray alloc] init];
         }
         else
         {
-            NSLog(@"in selectedSpecialGlass something went wrong");
-            assert(0);
+            specialGlasses = [NSMutableArray arrayWithArray:specialGlasses];
         }
+        [specialGlasses addObject:selected];
+        [self.regularLensDetails setObject:specialGlasses forKey:@"specialGlass"];
+
     }else{
         
-        NSMutableArray *specialGlasses;
-        if ([self.regularLensDetails objectForKey:@"specialGlass"]){
-            specialGlasses = [self.regularLensDetails objectForKey:@"specialGlass"];
-        }else{
+        NSMutableArray *specialGlasses = [self.regularLensDetails objectForKey:@"specialGlass"];
+        if (!specialGlasses){
             specialGlasses = [[NSMutableArray alloc] init];
         }
         [specialGlasses addObject:selected];
@@ -2038,11 +2031,6 @@
 
 -(IBAction)savePrescriptionTapped:(id)sender
 {
-    
-    if (self.editableDetails){
-        [self showMessageForUpdate];
-        return;
-    }
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     UITextField *nameTF = [cell viewWithTag:NAME_TAG];
@@ -2191,7 +2179,15 @@
             }
         }
     }
-    [self saveAndProceed];
+    if (self.editableDetails){
+        [self showMessageForUpdate];
+        return;
+    }
+    else
+    {
+        [self saveAndProceed];
+    }
+
 }
 
 -(void)saveAndProceed
@@ -2244,7 +2240,7 @@
     
     if(self.editableDetails)
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"BTN_CLICK_UPDATE_PRESP"
                             parameters:@{
                                          kFIRParameterItemID:@"BTN_CLICK_UPDATE_PRESP",
                                          kFIRParameterItemName:@"Update Prescription",
@@ -2254,7 +2250,7 @@
     }
     else
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"BTN_CLICK_SAVE_PRESP"
                             parameters:@{
                                          kFIRParameterItemID:@"BTN_CLICK_SAVE_PRESP",
                                          kFIRParameterItemName:@"Save Prescription",

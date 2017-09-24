@@ -158,7 +158,7 @@
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_GOOGLE_LOGIN"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_GOOGLE_LOGIN",
                                      kFIRParameterItemName:@"GOOGLE LOGIN",

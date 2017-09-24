@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F085EF99EA21A1AE26CEF5D77E0A130B"
+               BlueprintIdentifier = "F5A7B28089FFAF17EFB0665A14881986"
                BuildableName = "Pods_iOptic.framework"
                BlueprintName = "Pods-iOptic"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F085EF99EA21A1AE26CEF5D77E0A130B"
+            BlueprintIdentifier = "F5A7B28089FFAF17EFB0665A14881986"
             BuildableName = "Pods_iOptic.framework"
             BlueprintName = "Pods-iOptic"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -76,6 +76,11 @@
 		92FBA4271F302442002304CB /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FBA4261F302442002304CB /* CALayer+XibConfiguration.m */; };
 		947A493F1B0669F3460EFACE /* Pods_iOptic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA50D9E4446778797030C27F /* Pods_iOptic.framework */; };
 		B106A5241F631A45000D69D6 /* iOpticAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B106A5231F631A45000D69D6 /* iOpticAboutViewController.m */; };
+		B12327AC1F694EE50054F9A4 /* NotesViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B12327AA1F694EE50054F9A4 /* NotesViewTableViewCell.m */; };
+		B12327AD1F694EE50054F9A4 /* NotesViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B12327AB1F694EE50054F9A4 /* NotesViewTableViewCell.xib */; };
+		B12327B01F69AA150054F9A4 /* iOpticTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B12327AF1F69AA150054F9A4 /* iOpticTextViewController.m */; };
+		B12327B21F69B66A0054F9A4 /* TermsAndConditions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B12327B11F69B66A0054F9A4 /* TermsAndConditions.rtf */; };
+		B12327B41F69BBC60054F9A4 /* PrivacyPolicy.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B12327B31F69BBC60054F9A4 /* PrivacyPolicy.rtf */; };
 		B1396A4E1EE098A300B00CB8 /* default_profile_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B1396A4D1EE098A300B00CB8 /* default_profile_icon.png */; };
 		B140F9431ED3C1B40063D09C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B140F9421ED3C1B40063D09C /* main.m */; };
 		B140F9461ED3C1B40063D09C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B140F9451ED3C1B40063D09C /* AppDelegate.m */; };
@@ -233,6 +238,13 @@
 		952DC11E0D5DEB93C07BDECF /* Pods-iOptic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOptic.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOptic/Pods-iOptic.release.xcconfig"; sourceTree = "<group>"; };
 		B106A5221F631A45000D69D6 /* iOpticAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpticAboutViewController.h; sourceTree = "<group>"; };
 		B106A5231F631A45000D69D6 /* iOpticAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOpticAboutViewController.m; sourceTree = "<group>"; };
+		B12327A91F694EE50054F9A4 /* NotesViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewTableViewCell.h; sourceTree = "<group>"; };
+		B12327AA1F694EE50054F9A4 /* NotesViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewTableViewCell.m; sourceTree = "<group>"; };
+		B12327AB1F694EE50054F9A4 /* NotesViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesViewTableViewCell.xib; sourceTree = "<group>"; };
+		B12327AE1F69AA150054F9A4 /* iOpticTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOpticTextViewController.h; sourceTree = "<group>"; };
+		B12327AF1F69AA150054F9A4 /* iOpticTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOpticTextViewController.m; sourceTree = "<group>"; };
+		B12327B11F69B66A0054F9A4 /* TermsAndConditions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsAndConditions.rtf; sourceTree = SOURCE_ROOT; };
+		B12327B31F69BBC60054F9A4 /* PrivacyPolicy.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = PrivacyPolicy.rtf; sourceTree = SOURCE_ROOT; };
 		B1396A4D1EE098A300B00CB8 /* default_profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_profile_icon.png; sourceTree = "<group>"; };
 		B140F93E1ED3C1B40063D09C /* iOptic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOptic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B140F9421ED3C1B40063D09C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -428,6 +440,9 @@
 				7F6D5A6B1EE3A79E009CCDF5 /* NotesTableViewCell.h */,
 				7F6D5A6C1EE3A79E009CCDF5 /* NotesTableViewCell.m */,
 				7F6D5A6D1EE3A79E009CCDF5 /* NotesTableViewCell.xib */,
+				B12327A91F694EE50054F9A4 /* NotesViewTableViewCell.h */,
+				B12327AA1F694EE50054F9A4 /* NotesViewTableViewCell.m */,
+				B12327AB1F694EE50054F9A4 /* NotesViewTableViewCell.xib */,
 				7F5234061EE31FE200C149E1 /* LensCategoryTableViewCell.h */,
 				7F5234071EE31FE200C149E1 /* LensCategoryTableViewCell.m */,
 				7F5234091EE326D000C149E1 /* ContactLensPrescriptionTableViewCell.h */,
@@ -519,6 +534,7 @@
 			children = (
 				B1EFE8161F65D2E6005BE7C8 /* login_logo.png */,
 				B1E8AD991F60A1B600CB5A91 /* close_icon_white.png */,
+				7FFAE0AC1F02A49000C303FE /* whitetrash.png */,
 				B16110501F49CDBE00A3598C /* qr_code.png */,
 				B1C0E3241EE142B5005B9DFB /* close_icon.png */,
 				B1A01C901F557B94005E8F87 /* logout_icon.png */,
@@ -549,6 +565,8 @@
 			children = (
 				B1D7BDDC1ED577DC00B1E2EC /* iOpticLeftMenuViewController.h */,
 				B1D7BDDD1ED577DC00B1E2EC /* iOpticLeftMenuViewController.m */,
+				B12327AE1F69AA150054F9A4 /* iOpticTextViewController.h */,
+				B12327AF1F69AA150054F9A4 /* iOpticTextViewController.m */,
 			);
 			name = LeftMenu;
 			sourceTree = "<group>";
@@ -587,7 +605,6 @@
 		B140F9401ED3C1B40063D09C /* iOptic */ = {
 			isa = PBXGroup;
 			children = (
-				7FFAE0AC1F02A49000C303FE /* whitetrash.png */,
 				B13B28E61ED9AA05006ACBD4 /* Resources */,
 				B13B28E71ED9AA1F006ACBD4 /* LeftMenu */,
 				7F6D5A701EE3A7B5009CCDF5 /* Prescription */,
@@ -623,6 +640,8 @@
 		B140F9411ED3C1B40063D09C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B12327B31F69BBC60054F9A4 /* PrivacyPolicy.rtf */,
+				B12327B11F69B66A0054F9A4 /* TermsAndConditions.rtf */,
 				B140F9421ED3C1B40063D09C /* main.m */,
 			);
 			name = "Supporting Files";
@@ -725,17 +744,20 @@
 			files = (
 				B1C0E3251EE142B5005B9DFB /* close_icon.png in Resources */,
 				B1EFE8171F65D2E6005BE7C8 /* login_logo.png in Resources */,
+				B12327AD1F694EE50054F9A4 /* NotesViewTableViewCell.xib in Resources */,
 				7FFAE0AD1F02A49000C303FE /* whitetrash.png in Resources */,
 				B140F9891ED3CD360063D09C /* icon2.png in Resources */,
 				B16110511F49CDBE00A3598C /* qr_code.png in Resources */,
 				B140F98C1ED3CD360063D09C /* prescription_cell_image.png in Resources */,
 				B140F9841ED3CD360063D09C /* checked.png in Resources */,
 				B1C0E31F1EE0F0EA005B9DFB /* help_icon.png in Resources */,
+				B12327B21F69B66A0054F9A4 /* TermsAndConditions.rtf in Resources */,
 				B140F98E1ED3CD360063D09C /* unchecked.png in Resources */,
 				7F8456F91F48C64C00751034 /* OnBoard.storyboard in Resources */,
 				7F6D5A7A1EE3ACBD009CCDF5 /* LensPowerTableViewCell.xib in Resources */,
 				B140F9511ED3C1B40063D09C /* LaunchScreen.storyboard in Resources */,
 				B1D7BDDB1ED5246F00B1E2EC /* menu_icon.png in Resources */,
+				B12327B41F69BBC60054F9A4 /* PrivacyPolicy.rtf in Resources */,
 				B140F9831ED3CD360063D09C /* add_prescription.png in Resources */,
 				7F6D5A751EE3AC4B009CCDF5 /* PrescriptionTypeTableViewCell.xib in Resources */,
 				7F6D5A891EE3ADAE009CCDF5 /* PupillaryTableViewCell.xib in Resources */,
@@ -856,11 +878,13 @@
 				B140F9461ED3C1B40063D09C /* AppDelegate.m in Sources */,
 				7F0ECFC61EE4790A00D98014 /* RightImagedButton.swift in Sources */,
 				7F184AB01F48E29F00CE9480 /* UIImage+animatedGIF.m in Sources */,
+				B12327AC1F694EE50054F9A4 /* NotesViewTableViewCell.m in Sources */,
 				7FF59FDB1F13CFEE00C4A815 /* XTableViewCell.m in Sources */,
 				B1A0B17C1F4C19A10068858C /* OnBoardPlayAnimation.swift in Sources */,
 				B17919AD1ED51304007B1F89 /* CreatePrescriptionViewController.m in Sources */,
 				7F0A5E691F4349420067D954 /* split.c in Sources */,
 				B17919C21ED5133F007B1F89 /* LGSideMenuGesturesHandler.m in Sources */,
+				B12327B01F69AA150054F9A4 /* iOpticTextViewController.m in Sources */,
 				7FCA10171F48E5A6006EC9EF /* ForgotPasswordViewController.swift in Sources */,
 				B1A01C8D1F553B77005E8F87 /* UIViewController+Alerts.m in Sources */,
 				92FBA4271F302442002304CB /* CALayer+XibConfiguration.m in Sources */,

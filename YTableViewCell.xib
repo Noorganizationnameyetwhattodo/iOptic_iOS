@@ -770,7 +770,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94012290239334106" green="0.97674280405044556" blue="0.97267931699752808" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Wrc-DH-NPh" firstAttribute="leading" secondItem="69h-7r-38O" secondAttribute="leading" constant="8" id="1h7-Ve-Gb6"/>
                                     <constraint firstItem="fC2-48-Jns" firstAttribute="centerX" secondItem="6Bi-er-4Li" secondAttribute="centerX" id="2uV-Rc-2d5"/>
@@ -815,7 +815,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.96470588235294119" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="69h-7r-38O" firstAttribute="top" secondItem="4e1-zq-Ncm" secondAttribute="bottom" constant="17" id="6v0-h2-J6d"/>
                             <constraint firstItem="69h-7r-38O" firstAttribute="leading" secondItem="JYm-Nx-yH1" secondAttribute="leading" constant="20" id="RRA-hx-Iaa"/>

@@ -8,6 +8,7 @@
 
 #import "iOpticAboutViewController.h"
 #import "AppDelegate.h"
+#import "iOpticTextViewController.h"
 
 @interface iOpticAboutViewController ()
 @property(nonatomic, weak) IBOutlet UILabel *versionNumberLabel;
@@ -33,15 +34,45 @@
     [appDelegate goToMainViewController];
 }
 
+-(IBAction)termsAndConditionsTapped:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    iOpticTextViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"iOpticTextViewController"];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TermsAndConditions" ofType:@"rtf"];
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    [self showViewController:vc sender:self];
+    NSString *fPath = [NSString stringWithFormat:@"file://%@", filePath];
+    NSURL *fileURL = [NSURL URLWithString:fPath];
+    
+    NSError *error;
+    
+    NSAttributedString *attributedStringWithRtf = [[NSAttributedString alloc]   initWithURL:fileURL options:@{NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType}  documentAttributes:nil error:&error];
 
-/*
-#pragma mark - Navigation
+    vc.textView.attributedText = attributedStringWithRtf;
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+
+-(IBAction)privacyPolicyTapped:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    iOpticTextViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"iOpticTextViewController"];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PrivacyPolicy" ofType:@"rtf"];
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    [self showViewController:vc sender:self];
+    NSString *fPath = [NSString stringWithFormat:@"file://%@", filePath];
+    NSURL *fileURL = [NSURL URLWithString:fPath];
+    
+    NSError *error;
+    
+    NSAttributedString *attributedStringWithRtf = [[NSAttributedString alloc]   initWithURL:fileURL options:@{NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType}  documentAttributes:nil error:&error];
+    
+    vc.textView.attributedText = attributedStringWithRtf;
+
+}
+
+
 
 @end

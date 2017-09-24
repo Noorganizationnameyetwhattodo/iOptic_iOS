@@ -11,7 +11,7 @@
 #import "PrescriptionDetailsViewTableViewCell.h"
 #import "XTableViewCell.h"
 #import "YTableViewCell.h"
-#import "NotesTableViewCell.h"
+#import "NotesViewTableViewCell.h"
 #import "QRCodeTableViewCelTableViewCell.h"
 #import "UIImage+MDQRCode.h"
 @import Firebase;
@@ -36,8 +36,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"YTableViewCell"
                                                bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"YTableViewCell"];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"NotesTableViewCell"
-                                               bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"NotesTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NotesViewTableViewCell"
+                                               bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"NotesViewTableViewCell"];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"QRCodeTableViewCelTableViewCell"
                                                bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"QRCodeTableViewCelTableViewCell"];
@@ -94,7 +94,7 @@
 }
 
 -(void)deleteThePrescription{
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_DELETE_PRESP"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_DELETE_PRESP",
                                      kFIRParameterItemName:@"Delete Prescription",
@@ -145,7 +145,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationController"];
     
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
+    [FIRAnalytics logEventWithName:@"BTN_CLICK_EDIT_PRESP"
                         parameters:@{
                                      kFIRParameterItemID:@"BTN_CLICK_EDIT_PRESP",
                                      kFIRParameterItemName:@"Edit Prescription",
@@ -198,7 +198,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // my code
     if (indexPath.section == 0){
         return  300.0f;
     }else if((indexPath.section == 1)&&([self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"])){
@@ -252,7 +251,7 @@
     }
      else if ((indexPath.section == 3&&[self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"]&&
         [self.currentPrescriptionDict valueForKey:@"prescriptionContactLens"]&&[[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"]) || (indexPath.section == 2 &&([self.currentPrescriptionDict valueForKey:@"prescriptionGlasses"]||[self.currentPrescriptionDict valueForKey:@"prescriptionContactLens"])&&[[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"])){
-        NotesTableViewCell *tableViewCell = (NotesTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NotesTableViewCell" forIndexPath:indexPath];
+        NotesViewTableViewCell *tableViewCell = (NotesViewTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"NotesViewTableViewCell" forIndexPath:indexPath];
         if ([[self.currentPrescriptionDict valueForKey:@"prescriptionInfo"] valueForKey:@"notes"]){
             [tableViewCell.notesDescLbl setEditable:NO];
             

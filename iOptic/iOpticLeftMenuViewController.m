@@ -167,7 +167,7 @@
     
     if([identifier isEqualToString:@"iOpticHomeViewController"])
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"NAV_BTN_CLICK_HOME"
                             parameters:@{
                                          kFIRParameterItemID:@"NAV_BTN_CLICK_HOME",
                                          kFIRParameterItemName:@"NAV MENU HOME",
@@ -177,7 +177,7 @@
     }
     else if([identifier isEqualToString:@"iOpticAboutViewController"])
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"NAV_BTN_CLICK_ABOUT"
                             parameters:@{
                                          kFIRParameterItemID:@"NAV_BTN_CLICK_ABOUT",
                                          kFIRParameterItemName:@"NAV MENU ABOUT",
@@ -192,7 +192,7 @@
     }
     else if([identifier isEqualToString:@"LoginViewController"])
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"NAV_BTN_CLICK_LOGIN"
                             parameters:@{
                                          kFIRParameterItemID:@"NAV_BTN_CLICK_LOGIN",
                                          kFIRParameterItemName:@"NAV MENU LOGIN",
@@ -204,7 +204,7 @@
     }
     else if([identifier isEqualToString:@"LogoutViewController"])
     {
-        [FIRAnalytics logEventWithName:kFIREventSelectContent
+        [FIRAnalytics logEventWithName:@"NAV_BTN_CLICK_LOGOUT"
                             parameters:@{
                                          kFIRParameterItemID:@"NAV_BTN_CLICK_LOGOUT",
                                          kFIRParameterItemName:@"NAV MENU LOGOUT",

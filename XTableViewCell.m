@@ -102,16 +102,19 @@
             self.pupillaryLeftValueLbl.text = [[[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"dualPd"] valueForKey:@"os"];
         }
     }
-        else { // single PD
+        else if([[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"singlePd"]){ // single PD
             self.pupillaryRightValueLbl.text = [[currentPrescriptionDict valueForKey:@"pd"] valueForKey:@"singlePd"];
             [self.dualPDView setHidden:YES];
             self.dualPDStaticLabel.hidden = YES;
             self.rightPDStaticLabel.text = @"pupillary distance (PD)";
             UIFont *font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic"
-                                           size:13.0f];
+                                           size:12.0f];
             [self.rightPDStaticLabel setFont:font];
-
-
+        }
+        else{
+            [self.dualPDView setHidden:YES];
+            self.dualPDStaticLabel.hidden = YES;
+            self.rightPDView.hidden = YES;
         }
     
     NSArray *specialGlasses = [currentPrescriptionDict valueForKey:@"specialGlass"];
