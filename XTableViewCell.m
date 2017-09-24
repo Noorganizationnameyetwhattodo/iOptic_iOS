@@ -161,6 +161,10 @@
             self.eightNotes.text = [[currentPrescriptionDict valueForKey:@"specialGlass"] objectAtIndex:7];
         }
     }
+    if(count == 0)
+    {
+        self.otherFeaturesLabel.hidden = YES;
+    }
         
 }
 

@@ -680,7 +680,7 @@
                                         <rect key="frame" x="0.0" y="308" width="442" height="111"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-kE-LwR">
-                                                <rect key="frame" x="8" y="71.5" width="426" height="30"/>
+                                                <rect key="frame" x="8" y="69" width="426" height="30"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-v1-qIz">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="30"/>
@@ -765,7 +765,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5N-Ig-ORv">
-                                                <rect key="frame" x="8" y="41.5" width="426" height="30"/>
+                                                <rect key="frame" x="8" y="39" width="426" height="30"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqP-Kp-vKg">
                                                         <rect key="frame" x="0.0" y="0.0" width="142" height="30"/>
