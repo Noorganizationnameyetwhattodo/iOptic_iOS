@@ -22,8 +22,10 @@ class FirstOnBoardViewController: UIViewController,OnBoardPlayAnimation {
     override func viewDidLoad() {
         super.viewDidLoad()
         playerViewController = AVPlayerViewController()
+        playerViewController.videoGravity = AVLayerVideoGravityResizeAspectFill;
         playerViewController.showsPlaybackControls = false
         playerViewController.view.frame = self.view.frame
+        self.imageView.image = UIImage.init(named: "default_profile_icon")
         self.imageView.addSubview(playerViewController.view)
         self.view.bringSubview(toFront:headerLabel)
         self.view.bringSubview(toFront:continueButton)

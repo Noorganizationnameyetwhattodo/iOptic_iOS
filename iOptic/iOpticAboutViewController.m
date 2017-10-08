@@ -40,7 +40,7 @@
     iOpticTextViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"iOpticTextViewController"];
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TermsAndConditions" ofType:@"rtf"];
-    vc.modalPresentationStyle = UIModalPresentationPopover;
+    vc.modalPresentationStyle = UIModalPresentationPageSheet;
     [self showViewController:vc sender:self];
     NSString *fPath = [NSString stringWithFormat:@"file://%@", filePath];
     NSURL *fileURL = [NSURL URLWithString:fPath];
@@ -60,7 +60,7 @@
     iOpticTextViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"iOpticTextViewController"];
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PrivacyPolicy" ofType:@"rtf"];
-    vc.modalPresentationStyle = UIModalPresentationPopover;
+    vc.modalPresentationStyle = UIModalPresentationPageSheet;
     [self showViewController:vc sender:self];
     NSString *fPath = [NSString stringWithFormat:@"file://%@", filePath];
     NSURL *fileURL = [NSURL URLWithString:fPath];

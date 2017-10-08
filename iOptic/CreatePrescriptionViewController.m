@@ -645,7 +645,7 @@
             [cell.pdTitleLabel setText:@"select pd"];
             [cell.rightLabel setHidden:YES];
             [cell.leftLabel setHidden:YES];
-
+            [cell.leftPDBtn setHidden:YES];
             
             if (self.editableDetails){
                 [cell.rightPDBtn setTitle:signlePD forState:UIControlStateNormal];
@@ -657,6 +657,7 @@
             [cell.pdTitleLabel setText:@"pd"];
             [cell.rightLabel setHidden:NO];
             [cell.leftLabel setHidden:NO];
+            [cell.leftPDBtn setHidden:NO];
 
             if (self.editableDetails){
                 [cell.rightPDBtn setTitle:[dualPD valueForKey:@"od"] forState:UIControlStateNormal];

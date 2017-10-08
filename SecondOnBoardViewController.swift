@@ -21,6 +21,7 @@ class SecondOnBoardViewController: UIViewController,OnBoardPlayAnimation {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        playerViewController.videoGravity = AVLayerVideoGravityResizeAspectFill;
         playerViewController.showsPlaybackControls = false
         playerViewController.view.frame = self.view.frame
         self.imageView.addSubview(playerViewController.view)

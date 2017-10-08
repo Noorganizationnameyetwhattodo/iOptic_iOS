@@ -62,7 +62,9 @@
     {
         AVPlayerViewController *controller = [[AVPlayerViewController alloc] init];
         controller.showsPlaybackControls = NO;
+        //controller.view.frame = [UIScreen mainScreen].bounds;
         self.window.rootViewController = controller;
+        controller.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

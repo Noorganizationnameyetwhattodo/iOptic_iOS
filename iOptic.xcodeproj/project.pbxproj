@@ -1067,7 +1067,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = YRRKG63BYD;
 				INFOPLIST_FILE = iOptic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1089,7 +1089,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = YRRKG63BYD;
 				INFOPLIST_FILE = iOptic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.iOptic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
