@@ -117,7 +117,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                         
                         self.hideSpinner {
                             
-                            if user.isEmailVerified == false {
+                            if user.user.isEmailVerified == false {
                                 UserDefaults.standard.set("email", forKey: "loginType")
 
                                 let msg = "Please verify your email address and login again. Click Resend if you missed it."
@@ -144,9 +144,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
                             else
                             {
                                 UserDefaults.standard.set("email", forKey: "loginType")
-                                let uid = user.uid
-                                let email = user.email
-                                let photoURL = user.photoURL
+                                let uid = user.user.uid
+                                let email = user.user.email
+                                let photoURL = user.user.photoURL
                                 print("user id: \(uid) user email: \(String(describing: email)) user photourl: \(String(describing: photoURL))")
                                 
                                 let appDelegate = UIApplication.shared.delegate as! AppDelegate

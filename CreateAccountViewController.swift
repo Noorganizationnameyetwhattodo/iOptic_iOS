@@ -96,7 +96,7 @@ class CreateAccountViewController: UIViewController {
                     }
                     else
                     {
-                            print("\(user!.email!) created")
+                        print("\(user?.user.email!) created")
                             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                             changeRequest?.displayName = self.txtName.text
                             changeRequest?.commitChanges { (error) in
